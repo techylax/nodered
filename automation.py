@@ -17,6 +17,9 @@ class AutomationWindow(QWidget):
         self.process_button = QPushButton('Perform Automation')
         self.save_button = QPushButton('Save JSON')
 
+     # Python script to create Ui using PyQt5
+
+
         layout = QVBoxLayout()
         layout.addWidget(self.json_textedit)
         layout.addWidget(self.find_label)
@@ -53,7 +56,7 @@ class AutomationWindow(QWidget):
             ui_group_mapping = {}
 
 
-              # Replace ui_tab ID with "1" and update all occurrences
+# Replace ui_tab ID with "1" and update all occurrences
             for node in data:
                 if node.get('type') == 'ui_tab':
                     old_id = node.get('id')
@@ -62,6 +65,17 @@ class AutomationWindow(QWidget):
                         for key, value in other_node.items():
                             if key != 'id' and value == old_id:
                                 other_node[key] = '1'
+
+
+# Replace tab ID with "100" and update all occurrences
+            for node in data:
+                if node.get('type') == 'tab':
+                    old_id = node.get('id')
+                    node['id'] = '100'
+                    for other_node in data:
+                        for key, value in other_node.items():
+                            if key != 'id' and value == old_id:
+                                other_node[key] = '100'
 
             # Replace ui_group ID with "1+i" and update all occurrences
             for node in data:
@@ -105,5 +119,3 @@ if __name__ == '__main__':
     window = AutomationWindow()
     window.show()
     sys.exit(app.exec_())
-
-          
