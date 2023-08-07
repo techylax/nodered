@@ -1,3 +1,7 @@
+
+
+
+
 module.exports = function(RED) {
     function KepwareWrite(config) {
         RED.nodes.createNode(this,config);
@@ -12,3 +16,4 @@ module.exports = function(RED) {
     }
     RED.nodes.registerType("kepware-write",KepwareWrite);
 }
+
