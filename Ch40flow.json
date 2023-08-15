@@ -1,0 +1,6816 @@
+[
+    {
+        "id": "4a94aecb94ac68aa",
+        "type": "subflow",
+        "name": "Subflow 6",
+        "info": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "86c3a2ae9a35f47e"
+                    }
+                ]
+            }
+        ],
+        "out": []
+    },
+    {
+        "id": "86c3a2ae9a35f47e",
+        "type": "template",
+        "z": "4a94aecb94ac68aa",
+        "name": "Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n   \"title\" : \"Null_Value\",\n  \"text\": \"Machine: {{payload.Machine}},\n           WO#: {{payload.WO}},\n           Error: {{payload.Error}}, \n            \"\n  \n  \n    }",
+        "output": "str",
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "8a52bf7c65acd3ea"
+            ]
+        ]
+    },
+    {
+        "id": "8a52bf7c65acd3ea",
+        "type": "http request",
+        "z": "4a94aecb94ac68aa",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "https://pemnetsp.webhook.office.com/webhookb2/3ea208b0-bc02-4333-828f-a34cd0bb1091@14e34c25-dbe7-4374-a026-99d90b7392f3/IncomingWebhook/bc41cdc806dc45309ffe4d170b9a9e4d/4242fef8-d597-42c6-90e7-b0bfbc97f59c",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "570b75ae5783f40c"
+            ]
+        ]
+    },
+    {
+        "id": "570b75ae5783f40c",
+        "type": "debug",
+        "z": "4a94aecb94ac68aa",
+        "name": "Error_Notif",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "03d3f9b9acb259da",
+        "type": "subflow",
+        "name": "Subflow 5",
+        "info": "",
+        "in": [
+            {
+                "x": 240,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "11950d94689a8569"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 680,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "9c503d90f5e9bd86",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "11950d94689a8569",
+        "type": "function",
+        "z": "03d3f9b9acb259da",
+        "name": "function 34",
+        "func": "var msg1 = {};\n msg1.payload = \"Please complete the previous WO before selecting a new one.\";\n msg1.notificationType = \"warning\";\n setTimeout(function() {\n   msg.payload = {};\n     msg.payload = \"WO Selected:\";\n  }, 5000); \n  return [msg1,msg];\n  ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "b9567a03390798ac",
+                "9c503d90f5e9bd86"
+            ]
+        ]
+    },
+    {
+        "id": "b9567a03390798ac",
+        "type": "ui_toast",
+        "z": "03d3f9b9acb259da",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 570,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9c503d90f5e9bd86",
+        "type": "ui_ui_control",
+        "z": "03d3f9b9acb259da",
+        "name": "",
+        "events": "all",
+        "x": 560,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d440ce3753a1d478",
+        "type": "subflow",
+        "name": "Subflow 3",
+        "info": "",
+        "in": [
+            {
+                "x": 220,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "2cc6354628921b83"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 720,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "dbf2fc9d6649fdf6",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1020,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "bea3f0913778777c",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "2cc6354628921b83",
+        "type": "switch",
+        "z": "d440ce3753a1d478",
+        "name": "",
+        "property": "payload.jde__status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "SUCCESS",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "SUCCESS",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "dbf2fc9d6649fdf6"
+            ],
+            [
+                "9f191edd5a3bd307"
+            ]
+        ]
+    },
+    {
+        "id": "dbf2fc9d6649fdf6",
+        "type": "function",
+        "z": "d440ce3753a1d478",
+        "name": "function 11",
+        "func": "if (msg.payload.jde__status == \"SUCCESS\") {\n  let timestamp = Date.now();\n    flow.set(\"storedData\", {\n    timestamp: timestamp,\n    data: msg.payload\n  });\n  \n  return msg;\n}\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f191edd5a3bd307",
+        "type": "function",
+        "z": "d440ce3753a1d478",
+        "name": "function 12",
+        "func": "if (msg.payload.jde__status != \"SUCCESS\") {\n  let storedData = flow.get(\"storedData\") || {};\n  storedData.failedTimestamp = Date.now();\n  flow.set(\"storedData\", storedData);\n  return {\n    error: msg.payload.jde__status,\n    payload: storedData.data\n  };\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 180,
+        "wires": [
+            [
+                "d5032a193db19bc4"
+            ]
+        ]
+    },
+    {
+        "id": "d5032a193db19bc4",
+        "type": "function",
+        "z": "d440ce3753a1d478",
+        "name": "function 13",
+        "func": "let newData = msg.payload;\nlet storedData = flow.get(\"storedData\") || {};\nlet timestamp = Date.now();\nlet combinedData = {\n  timestamp: timestamp,\n  data: newData\n};\nif (storedData.data) {\n  combinedData.storedData = storedData;\n}\nreturn {\n  payload: JSON.stringify(combinedData)\n};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 180,
+        "wires": [
+            [
+                "bea3f0913778777c"
+            ]
+        ]
+    },
+    {
+        "id": "bea3f0913778777c",
+        "type": "function",
+        "z": "d440ce3753a1d478",
+        "name": "function 17",
+        "func": "msg.payload = {};\nmsgElt = {};\nmsgElt.payload = {};\nmsgElt.payload = msg.payload;\nmsgElt.payload = flow.keys();\nvar len = msgElt.payload.length;\nvar i = 0;\nfor (i=0;i<len;i++) {\n a = msgElt.payload[i];\n msg.payload[a] = flow.get(a);\n}\nreturn [msg,null];\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73c9668643fa63b3",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 140,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "03e9313b9b07f67d"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 660,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "d2226ef0b6c0f121",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 540,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "d2226ef0b6c0f121",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "d2226ef0b6c0f121",
+        "type": "function",
+        "z": "73c9668643fa63b3",
+        "name": "check",
+        "func": "if (msg.payload.OrderNum == null || msg.payload.OrderNum == \"Indirect\") {\n    msg.payload = {};\n    msg.payload = \"Please select a new WO before laboring on\";\n    msg.notificationType = \"warning\";\n       msg2 = {};\n    msg2.payload = false;\n\treturn [msg, msg2];\n\t}\n else {\n    \n    msg.payload = {};\n    return msg;\n\t}\n  ",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "8d6546332594ed40",
+                "89c582ca3335bb9f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8d6546332594ed40",
+        "type": "ui_toast",
+        "z": "73c9668643fa63b3",
+        "position": "top right",
+        "displayTime": "1",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 610,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "89c582ca3335bb9f",
+        "type": "function",
+        "z": "73c9668643fa63b3",
+        "name": "Set Labor",
+        "func": "flow.set(\"Labor\",msg.payload);\nmsg.payload = {\"group\":{\"show\":[\"CH030DV_Pin\"],\"hide\":[\"CH030DV_DSI\"]}};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "0faa12c4b1cdc0dc"
+            ]
+        ]
+    },
+    {
+        "id": "0faa12c4b1cdc0dc",
+        "type": "ui_ui_control",
+        "z": "73c9668643fa63b3",
+        "name": "",
+        "events": "change",
+        "x": 620,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "03e9313b9b07f67d",
+        "type": "switch",
+        "z": "73c9668643fa63b3",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [
+                "d2226ef0b6c0f121"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ba7038a52b6c04be",
+        "type": "subflow",
+        "name": "Confirm Badge + Notif",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 120,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "fa9681befd56a2ae"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 600,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "73e74e9bcd85c221",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 940,
+                "y": 300,
+                "wires": [
+                    {
+                        "id": "9e50d6d09847c57b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99",
+        "inputLabels": [
+            "flow.Pass"
+        ],
+        "outputLabels": [
+            "Continue to UI",
+            "Invalid Badge"
+        ]
+    },
+    {
+        "id": "73e74e9bcd85c221",
+        "type": "switch",
+        "z": "ba7038a52b6c04be",
+        "name": "Test Name",
+        "property": "payload[\"Alpha Name\"]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [],
+            [
+                "309f8b6043b6b4cf"
+            ]
+        ]
+    },
+    {
+        "id": "309f8b6043b6b4cf",
+        "type": "change",
+        "z": "ba7038a52b6c04be",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Please Enter a Valid Badge Number",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "9e50d6d09847c57b"
+            ]
+        ]
+    },
+    {
+        "id": "9e50d6d09847c57b",
+        "type": "ui_toast",
+        "z": "ba7038a52b6c04be",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Invalid Badge",
+        "name": "",
+        "x": 770,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa9681befd56a2ae",
+        "type": "http request",
+        "z": "ba7038a52b6c04be",
+        "name": "PENN_ORC_REMSTARBADGECHECK",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://dv-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORC_REMSTARBADGECHECK",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "basic",
+        "senderr": false,
+        "headers": [],
+        "x": 520,
+        "y": 80,
+        "wires": [
+            [
+                "73e74e9bcd85c221",
+                "0d81ede5e52b78f9"
+            ]
+        ]
+    },
+    {
+        "id": "0d81ede5e52b78f9",
+        "type": "debug",
+        "z": "ba7038a52b6c04be",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "c59719cd71299db1",
+        "type": "subflow",
+        "name": "Confirm Msg",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "8ee6be296e8b7ea2"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 660,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "c6e8bd0abc60d4a3",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 660,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "c6e8bd0abc60d4a3",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "c6e8bd0abc60d4a3",
+        "type": "switch",
+        "z": "c59719cd71299db1",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Yes",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "No",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 530,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ],
+        "outputLabels": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "id": "bdafbfc82f5b1277",
+        "type": "ui_toast",
+        "z": "c59719cd71299db1",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "No",
+        "cancel": "Yes",
+        "raw": false,
+        "className": "",
+        "topic": "WO Selected: ",
+        "name": "",
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "c6e8bd0abc60d4a3"
+            ]
+        ]
+    },
+    {
+        "id": "8ee6be296e8b7ea2",
+        "type": "change",
+        "z": "c59719cd71299db1",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "save",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "save.z_DOCO_38",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "bdafbfc82f5b1277"
+            ]
+        ]
+    },
+    {
+        "id": "100",
+        "type": "tab",
+        "label": "1CH040",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ef492030b9d45447",
+        "type": "junction",
+        "z": "100",
+        "x": 480,
+        "y": 1560,
+        "wires": [
+            [
+                "7ca46f496cd1da6b",
+                "c592152351d05a54",
+                "35b2f6b8b4a8d7a0"
+            ]
+        ]
+    },
+    {
+        "id": "a88e70e1fcf9c56b",
+        "type": "junction",
+        "z": "100",
+        "x": 2400,
+        "y": 80,
+        "wires": [
+            [
+                "5c20ed789573474a",
+                "f2826c403da276db",
+                "b2f10d0f19f257a6",
+                "d949924b350f0cbb",
+                "3a9a03e772e0bafc",
+                "210615f2b566b2ea"
+            ]
+        ]
+    },
+    {
+        "id": "5caf2c8a92e8e2c8",
+        "type": "function",
+        "z": "100",
+        "name": "Headers",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n    'Authorization': 'Basic ' + Buffer.from('NODERED:L&M2023').toString('base64'),\n   };\n\nmsg.payload = {};\n\nmsg.payload.Machine = flow.get(\"Machine\");\n//msg.payload.Machine = \"\";\nmsg.payload.Branch_Plant = flow.get(\"Branch_Plant\");\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 220,
+        "wires": [
+            [
+                "7eee304302691f4d"
+            ]
+        ],
+        "info": "This function is responsible for assembling the necessary headers and payload for an API request"
+    },
+    {
+        "id": "7eee304302691f4d",
+        "type": "http request",
+        "z": "100",
+        "name": "P553102AMLS",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://jde5-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORCH_P553102AMLS",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 800,
+        "y": 220,
+        "wires": [
+            [
+                "4dc2ce3b7cc64b35",
+                "b9fb2c0122cbf5e2",
+                "39d97cea44310a8a",
+                "43932a337825d64f"
+            ]
+        ]
+    },
+    {
+        "id": "ce09abf9997dc542",
+        "type": "ui_table",
+        "z": "100",
+        "group": "2",
+        "name": "WO Queue",
+        "order": 3,
+        "width": 14,
+        "height": 5,
+        "columns": [
+            {
+                "field": "z_URAB_37",
+                "title": "Machine Seq",
+                "width": "150",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "z_DOCO_38",
+                "title": "WO #",
+                "width": "160",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "z_CPIL_64",
+                "title": "Material",
+                "width": "213",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "z_KITL_42",
+                "title": "Part #",
+                "width": "213",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1670,
+        "y": 360,
+        "wires": [
+            [
+                "023cac4f3f852fef"
+            ]
+        ]
+    },
+    {
+        "id": "4dc2ce3b7cc64b35",
+        "type": "function",
+        "z": "100",
+        "name": "Reduce",
+        "func": "msg.payload = msg.payload.ServiceRequest1.fs_P553102A_W553102AB.data.gridData.rowset\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 220,
+        "wires": [
+            [
+                "cd20bd37bda2ee07"
+            ]
+        ],
+        "info": " This function extract  data from a service response contained in the message payload"
+    },
+    {
+        "id": "eaef652aef17a7d1",
+        "type": "http request",
+        "z": "100",
+        "name": "GetWOHDRInfo",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://jde5-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORCH_GetWOHDRInfo",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2260,
+        "y": 220,
+        "wires": [
+            [
+                "ebda220aad7c3642",
+                "2d743fa9b204b7fd",
+                "2db937ff25475bf2",
+                "aeee7f4f6793e780"
+            ]
+        ]
+    },
+    {
+        "id": "c02e5919a0cc1df5",
+        "type": "function",
+        "z": "100",
+        "name": "Headers",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n    'Authorization': 'Basic ' + Buffer.from('NODERED:L&M2023').toString('base64'),\n\n   };\n\nflow.set(\"OpSeq\", msg.payload.z_OPSQ_41);\nflow.set(\"Material\", msg.payload.z_CPIL_64);\nflow.set(\"OpStat\",19);\n\nmsg.payload.Machine = flow.get(\"Machine\");\nmsg.payload.Branch_Plant = flow.get(\"Branch_Plant\");\nmsg.payload.WorkOrderNo = msg.payload.z_DOCO_38;\nmsg.color = \"white\"\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 380,
+        "wires": [
+            [
+                "61f00d651326a956",
+                "eaef652aef17a7d1",
+                "13c30b5e2f133360"
+            ]
+        ]
+    },
+    {
+        "id": "d949924b350f0cbb",
+        "type": "ui_text",
+        "z": "100",
+        "group": "3",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Part Number",
+        "format": "{{msg.payload[\"Item Number\"]}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2695,
+        "y": 820,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "210615f2b566b2ea",
+        "type": "ui_text",
+        "z": "100",
+        "group": "3",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Part Type",
+        "format": "{{msg.payload[\"WO Desc\"]}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2745,
+        "y": 200,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "3a9a03e772e0bafc",
+        "type": "ui_text",
+        "z": "100",
+        "group": "3",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "WO Qty + Shrink",
+        "format": "{{msg.payload[\"Order + Shrink\"]}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2755,
+        "y": 620,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "f6e7d46f8b7ff09f",
+        "type": "ui_text",
+        "z": "100",
+        "group": "3",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Raw Material",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2795,
+        "y": 740,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "ebda220aad7c3642",
+        "type": "function",
+        "z": "100",
+        "name": "Filter T Array",
+        "func": "var msgElt = {};\nmsgElt.payload = {};\nfor (var i = 0;i<(msg.payload.ToolNumberDetails.length);i++){\n    msgElt.payload = msg.payload.ToolNumberDetails[i].ToolItem\n    node.send(msgElt);  \n}\nreturn ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 260,
+        "wires": [
+            [
+                "fad7a46f6b52a76e"
+            ]
+        ],
+        "info": "This function is iterating through an array of tool details in the msg.payload.ToolNumberDetails array and sending individual tool items using the node.send method."
+    },
+    {
+        "id": "fad7a46f6b52a76e",
+        "type": "switch",
+        "z": "100",
+        "name": "Look for T",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "else"
+            },
+            {
+                "t": "cont",
+                "v": "T",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2770,
+        "y": 260,
+        "wires": [
+            [
+                "f6e7d46f8b7ff09f"
+            ],
+            [
+                "f1cc20724041145e"
+            ]
+        ]
+    },
+    {
+        "id": "f1cc20724041145e",
+        "type": "join",
+        "z": "100",
+        "name": "Tool Nums",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "2",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 2840,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6f501c2bc96e7db0",
+        "type": "function",
+        "z": "100",
+        "name": "Tranform Message",
+        "func": "//msg.payload.timestamp = (msg.payload.timestamp-(msg.payload.timestamp%1000))/1000;\nvar outputMessages = [];\n\nfor(var index in msg.payload.values){\n    var msgElt = {};\n    msgElt.payload = {};\n\n    \n    // tagAttrs assumes a value like the following for the id key\n    // \"CF.CF001.Prgm_Visual_Factory_M1_CF007.VF.Cast_Number.DATA\"\n    var tagAttrs = msg.payload.values[index].id.split('.');\n    \n    //if(msgElt.payload.attribute )\n    msgElt.payload.department = tagAttrs[0];\n    msgElt.payload.device = tagAttrs[2];\n    msgElt.payload.attribute = tagAttrs[3];\n    msgElt.payload.value = msg.payload.values[index].v;\n    msgElt.payload.time = msg.payload.timestamp;\n    //msgElt.topic = \"APILBS\"\n    msgElt.complete = true;\n    outputMessages.push(msgElt);   \n}\n\nreturn [outputMessages];  ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 840,
+        "wires": [
+            [
+                "f4e302e451c4ba25"
+            ]
+        ]
+    },
+    {
+        "id": "d9f7c520491cdb77",
+        "type": "mqtt in",
+        "z": "100",
+        "name": "",
+        "topic": "iotgateway",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "657711a877f59fbf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 840,
+        "wires": [
+            [
+                "6f501c2bc96e7db0"
+            ]
+        ]
+    },
+    {
+        "id": "f4e302e451c4ba25",
+        "type": "switch",
+        "z": "100",
+        "name": "Machine Type",
+        "property": "payload.device",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "CH040",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": true,
+        "outputs": 1,
+        "x": 520,
+        "y": 840,
+        "wires": [
+            [
+                "1822bd38fff20008"
+            ]
+        ]
+    },
+    {
+        "id": "895cfb08a62dba38",
+        "type": "ui_text",
+        "z": "100",
+        "group": "4",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<font color=\"green\" size=4%>Good Count",
+        "format": "<font color=\"green\" size=4%>{{payload.value}} PCS",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1095,
+        "y": 700,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "0cab9926d383ea78",
+        "type": "sort",
+        "z": "100",
+        "name": "",
+        "order": "ascending",
+        "as_num": true,
+        "target": "",
+        "targetType": "seq",
+        "msgKey": "payload",
+        "msgKeyType": "elem",
+        "seqKey": "payload.z_URAB_37",
+        "seqKeyType": "msg",
+        "x": 1210,
+        "y": 220,
+        "wires": [
+            [
+                "c7cf574531547923"
+            ]
+        ]
+    },
+    {
+        "id": "cd20bd37bda2ee07",
+        "type": "split",
+        "z": "100",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1090,
+        "y": 220,
+        "wires": [
+            [
+                "0cab9926d383ea78"
+            ]
+        ]
+    },
+    {
+        "id": "f1c97067442724c9",
+        "type": "join",
+        "z": "100",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1490,
+        "y": 360,
+        "wires": [
+            [
+                "733789d5c1699c38"
+            ]
+        ]
+    },
+    {
+        "id": "b2f10d0f19f257a6",
+        "type": "ui_text",
+        "z": "100",
+        "group": "3",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "WO",
+        "format": "{{msg.payload.OrderNum}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2735,
+        "y": 140,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "a33e414228e27eed",
+        "type": "ui_form",
+        "z": "100",
+        "name": "",
+        "label": "<size=5%>Pre-Run Checklist:",
+        "group": "5",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "options": [
+            {
+                "label": "Shadow Board",
+                "value": "ShadowBoard",
+                "type": "checkbox",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Loose Pieces",
+                "value": "LoosePieces",
+                "type": "checkbox",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "No Leaks",
+                "value": "NoLeaks",
+                "type": "checkbox",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "No Spills",
+                "value": "NoSpills",
+                "type": "checkbox",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Clear Work Surface",
+                "value": "Surface",
+                "type": "checkbox",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "ShadowBoard": false,
+            "LoosePieces": false,
+            "NoLeaks": false,
+            "NoSpills": false,
+            "Surface": false
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "Restart",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": false,
+        "className": "",
+        "x": 210,
+        "y": 2360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e4d6bcc683411ea",
+        "type": "ui_table",
+        "z": "100",
+        "group": "2",
+        "name": "Ready + Waiting to be Scheduled",
+        "order": 5,
+        "width": 14,
+        "height": 5,
+        "columns": [
+            {
+                "field": "z_URAB_37",
+                "title": "Machine Seq",
+                "width": "150",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "z_DOCO_38",
+                "title": "WO #",
+                "width": "160",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "z_CPIL_64",
+                "title": "Material",
+                "width": "213",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "z_KITL_42",
+                "title": "Part #",
+                "width": "213",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1920,
+        "y": 320,
+        "wires": [
+            [
+                "c02e5919a0cc1df5"
+            ]
+        ]
+    },
+    {
+        "id": "6177823767e19521",
+        "type": "join",
+        "z": "100",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1490,
+        "y": 320,
+        "wires": [
+            [
+                "4e4d6bcc683411ea"
+            ]
+        ]
+    },
+    {
+        "id": "c0953a5d169f69fb",
+        "type": "http request",
+        "z": "100",
+        "name": "GetBOMUM",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://jde5-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORCH_GetBOMUM",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2650,
+        "y": 360,
+        "wires": [
+            [
+                "1a6ea94222e4689a"
+            ]
+        ]
+    },
+    {
+        "id": "2db937ff25475bf2",
+        "type": "function",
+        "z": "100",
+        "name": "Headers",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n    'Authorization': 'Basic ' + Buffer.from('NODERED:L&M2023').toString('base64'),\n   };\n\nmsg.payload = {};\n\nmsg.payload.Machine = flow.get(\"Machine\");\nmsg.payload.Branch = flow.get(\"Branch_Plant\");\nmsg.payload.ParentItem = flow.get(\"PartNum\");\nmsg.payload.ComponentItem = flow.get(\"Material\");\nmsg.payload.TypeBOM = \"M\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 360,
+        "wires": [
+            [
+                "c0953a5d169f69fb"
+            ]
+        ],
+        "info": "This function is assembling data as per request on the logic."
+    },
+    {
+        "id": "55da7fe487b78221",
+        "type": "inject",
+        "z": "100",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "token",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "cba318c76c21e2bc"
+            ]
+        ]
+    },
+    {
+        "id": "ef6967fa72db1b3f",
+        "type": "http request",
+        "z": "100",
+        "name": "GetAvailability",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://jde5-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORCH_GetAvailability",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 480,
+        "y": 320,
+        "wires": [
+            [
+                "c8904180763521ba",
+                "8e8addba6d30e33d",
+                "2e74a39749d775f3"
+            ]
+        ]
+    },
+    {
+        "id": "cba318c76c21e2bc",
+        "type": "function",
+        "z": "100",
+        "name": "Headers",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n    'Authorization': 'Basic ' + Buffer.from('NODERED:L&M2023').toString('base64'),\n   };\n\nmsg.payload = {};\n\nmsg.payload.Location = flow.get(\"Machine\");\nmsg.payload.Branch_Plant = flow.get(\"Branch_Plant\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 320,
+        "wires": [
+            [
+                "ef6967fa72db1b3f",
+                "8e8addba6d30e33d"
+            ]
+        ],
+        "info": "This function appears to be setting up the headers and payload for an API request"
+    },
+    {
+        "id": "8e8addba6d30e33d",
+        "type": "debug",
+        "z": "100",
+        "name": "Get Avail",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 840,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c8904180763521ba",
+        "type": "function",
+        "z": "100",
+        "name": "Reduce",
+        "func": "msg.payload.len = msg.payload.ServiceRequest1.fs_P5541271_W5541271A.data.gridData.rowset.length;\n\nif (msg.payload.len == 0) {\n    msg.payload = 0;\n} else {\n    msg.payload = (Number (msg.payload.ServiceRequest1.fs_P5541271_W5541271A.data.gridData.rowset[0].z_PQOH_450));\n}\n\nflow.set(\"LBSIssued\",msg.payload)\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 320,
+        "wires": [
+            [
+                "8e8addba6d30e33d"
+            ]
+        ],
+        "info": " This function is extracting and updating the \"LBSIssued\" value from a service response contained in the message payload"
+    },
+    {
+        "id": "a6cd6fe42318d745",
+        "type": "function",
+        "z": "100",
+        "name": "LBSRemaining Calc",
+        "func": "msg.payload = {};\nmsg.payload.LBSPerPcs = flow.get(\"LBSperPC\");\nmsg.payload.LBSIssued = flow.get(\"LBSIssued\");\nmsg.payload.Total_Count = flow.get(\"Total_Count\"); \n\nmsg.payload.LBSUsed = Number((msg.payload.Total_Count*msg.payload.LBSPerPcs).toFixed(0));\nmsg.payload.LBSRemain = Number((msg.payload.LBSIssued-msg.payload.LBSUsed).toFixed(0));\n\n\nflow.set(\"LBSRemain\",msg.payload.LBSRemain);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 420,
+        "wires": [
+            [
+                "2620b8664675908f",
+                "1c3beb523f63e22c"
+            ]
+        ],
+        "info": " This function seems to be calculating and updating the remaining pounds (LBS) based on the values obtained from the flow context. "
+    },
+    {
+        "id": "2620b8664675908f",
+        "type": "ui_text",
+        "z": "100",
+        "group": "4",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<font color=\"green\" size=4%>Remaining Material",
+        "format": "<font color=\"green\" size=4%>{{payload.LBSRemain}} LBS",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 775,
+        "y": 420,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "2d743fa9b204b7fd",
+        "type": "function",
+        "z": "100",
+        "name": "Set Flow Var",
+        "func": "flow.set(\"WO#\", msg.payload.OrderNum);\nflow.set(\"PartNum\", msg.payload[\"Item Number\"]);\nflow.set(\"QTYShrink\",msg.payload[\"Order + Shrink\"]);\nflow.set(\"Desc\",msg.payload[\"WO Desc\"]);\n//flow.set(\"Workcenter\", msg.payload[\"\"])\nflow.set(\"ScrapQTY\",0);\nflow.set(\"ScrapQTYTotal\",0);\nflow.set(\"AddNum\",0);\nflow.set(\"Scrap\",false);\nflow.set(\"LastBinCheckCount\",0);\nflow.set(\"GoodParts\",0);\nflow.set(\"SetUp\",true);\nflow.set(\"GoodButton\",0);\nflow.set(\"BadButton\",0);\nflow.set(\"Good_Count\", 0)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2590,
+        "y": 220,
+        "wires": [
+            [
+                "b2f10d0f19f257a6",
+                "d949924b350f0cbb",
+                "210615f2b566b2ea",
+                "3a9a03e772e0bafc",
+                "7404b0ff8acd8c50",
+                "d9c3d6027581a4f1",
+                "55f90315b5587d56"
+            ]
+        ],
+        "info": "The function is used to set up initial values in the flow context variables based on information from the msg.payload object."
+    },
+    {
+        "id": "1a6ea94222e4689a",
+        "type": "function",
+        "z": "100",
+        "name": "Set LBSperPC",
+        "func": "flow.set(\"LBSperPC\",msg.payload.Quantity)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2840,
+        "y": 360,
+        "wires": [
+            [
+                "2f1c01017137720a"
+            ]
+        ],
+        "info": "The function set  the value of \"LBSperPC\" in the flow context based on the quantity value provided "
+    },
+    {
+        "id": "617046ce31876155",
+        "type": "function",
+        "z": "100",
+        "name": "Set Good_Count",
+        "func": " //BC MACHINE IS OFFLINE RN\nflow.set(\"Good_Count\",msg.payload.value);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 700,
+        "wires": [
+            [
+                "895cfb08a62dba38"
+            ]
+        ],
+        "info": "This function is used to set good count"
+    },
+    {
+        "id": "44c45d7fd5634968",
+        "type": "inject",
+        "z": "100",
+        "name": "Trigger LBS Remaining",
+        "props": [],
+        "repeat": "30",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "a6cd6fe42318d745",
+                "974fb35e56eb8c41"
+            ]
+        ]
+    },
+    {
+        "id": "1c3beb523f63e22c",
+        "type": "debug",
+        "z": "100",
+        "name": "LBSRemain",
+        "active": false,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "2f1c01017137720a",
+        "type": "debug",
+        "z": "100",
+        "name": "LBS/PC",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 3340,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "46c2556474c95d9d",
+        "type": "debug",
+        "z": "100",
+        "name": "Response from JDE",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3440,
+        "y": 2780,
+        "wires": []
+    },
+    {
+        "id": "062dc238d258fc6b",
+        "type": "function",
+        "z": "100",
+        "name": "Set Machine_Status",
+        "func": "\nflow.set(\"MachineStatus\",msg.payload);\nconst time = new Date();\nconst options = {hour12:false, timestyle:\"short\", timeZone:\"EST\"};\nvar timejde = time.toLocaleTimeString('en-US', options);\ntimejde = timejde.replace(\":\",\"\");\ntimejde = timejde.replace(\":\",\"\");\nflow.set(\"TagTime\", timejde);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nmsg.payload = {};\nmsg.payload.value = flow.get(\"Machine_Status\")|| flow.get(\"Machine_Status\", \"file\")\nreturn msg;",
+        "finalize": "",
+        "libs": [],
+        "x": 1400,
+        "y": 740,
+        "wires": [
+            []
+        ],
+        "info": "This function sets the \"MachineStatus\" and \"TagTime\" values in a flow using input data, and formats the current time into a specific format before returning the modified input data.\r\n\r\n\r\n\r\n\r\n"
+    },
+    {
+        "id": "a1debfafb7948f92",
+        "type": "debug",
+        "z": "100",
+        "name": "TimeRemain",
+        "active": false,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 870,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a71249045b54546f",
+        "type": "http request",
+        "z": "100",
+        "name": "Send Machine Status",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://dv-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORC_UpdateRoutingQtyCompletions",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "basic",
+        "senderr": false,
+        "headers": [],
+        "x": 3100,
+        "y": 2780,
+        "wires": [
+            [
+                "46c2556474c95d9d",
+                "2b65d738d45e688f"
+            ]
+        ]
+    },
+    {
+        "id": "4a41508bbd25a7b8",
+        "type": "function",
+        "z": "100",
+        "name": "Set Rate",
+        "func": "if (msg.payload.value == 0){\n} else {\n    flow.set(\"Rate\",msg.payload.value);\n}\n\nconst time = new Date();\nconst options = {hour12:false, timestyle:\"short\", timeZone:\"EST\"};\nmsg.payload.timejde = time.toLocaleTimeString('en-US', options);\nmsg.payload.timejde = msg.payload.timejde.replace(\":\",\"\");\nmsg.payload.timejde = msg.payload.timejde.replace(\":\",\"\");\nflow.set(\"TagTimeRate\", msg.payload.timejde);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 860,
+        "wires": [
+            [
+                "7917092a68ce378d"
+            ]
+        ],
+        "info": "This function flow variable \"Rate\" based on a condition, formats the current time into a specific style, and updates another flow variable \"TagTimeRate\" with the formatted time\r\n\r\n\r\n\r\n"
+    },
+    {
+        "id": "7917092a68ce378d",
+        "type": "ui_text",
+        "z": "100",
+        "group": "4",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<font color=\"green\" size=4%>Rate",
+        "format": "<font color=\"green\" size=4%>{{payload.value}} PPM",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1015,
+        "y": 860,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "3e92d68aac81dd85",
+        "type": "ui_text",
+        "z": "100",
+        "group": "4",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "RemainTime",
+        "label": "<font color={{msg.color}} size=4% >{{payload.name}}",
+        "format": "<font color={{msg.color}} size=4%>{{payload.RemainTime}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 675,
+        "y": 500,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "974fb35e56eb8c41",
+        "type": "function",
+        "z": "100",
+        "name": "Set RemainTime",
+        "func": "msg.payload = {};\n\nmsg.payload.RemainPCS = flow.get(\"QTYShrink\") - flow.get(\"Good_Count\");\nmsg.payload.Rate = flow.get(\"Rate\");\nmsg.payload.RemainTime = msg.payload.RemainPCS/msg.payload.Rate;//MIN\nmsg.payload.RemainTime = Number((msg.payload.RemainTime/60).toFixed(2)); //HR\n\nif(msg.payload.RemainPCS >= 0){\n    msg.payload.name = \"Time Remaining\";\n    msg.color = \"green\";\n    msg.payload.hours = Math.floor(msg.payload.RemainTime);\n    min = msg.payload.RemainTime - msg.payload.hours;\n    min =  Math.floor((min*60));\n    msg.payload.RemainTime = msg.payload.hours+\" H \"+min+\" M\";\n    flow.set(\"RemainTime\", msg.payload.RemainTime);\n}\nelse {\n    msg.payload.name = \"Over Run By\";\n    msg.color = \"yellow\";\n    msg.payload.hours = Math.ceil(msg.payload.RemainTime);\n    min = msg.payload.RemainTime - msg.payload.hours;\n    min =  Math.ceil((min*60));\n    msg.payload.RemainTime = -1*msg.payload.hours+\" H \"+-1*min+\" M\";\n    flow.set(\"RemainTime\", msg.payload.RemainTime);\n}\n\nreturn msg;\n\n// Determine text color\n// Round down to get Hours alone if positive, Round up if negative\n// Same with getting minutes alone\n// Form displayed message",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 500,
+        "wires": [
+            [
+                "3e92d68aac81dd85",
+                "a1debfafb7948f92"
+            ]
+        ],
+        "info": "This function seems to be performing calculations related to time remaining or overrun based on certain values obtained from the flow context."
+    },
+    {
+        "id": "5f8e5bdc17eaf03e",
+        "type": "comment",
+        "z": "100",
+        "name": "API: MLS",
+        "info": "",
+        "x": 100,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "34d772faec6a0009",
+        "type": "comment",
+        "z": "100",
+        "name": "API: Material Released",
+        "info": "",
+        "x": 190,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "56055d52c21b170d",
+        "type": "comment",
+        "z": "100",
+        "name": "API :LBS/PC",
+        "info": "",
+        "x": 2490,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "b9637dbb30c6e2f3",
+        "type": "comment",
+        "z": "100",
+        "name": "Calc + Display: LBS + Time Remaining",
+        "info": "",
+        "x": 240,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "125fe3556b356cd0",
+        "type": "comment",
+        "z": "100",
+        "name": "KepserverEX Machine Data + Display",
+        "info": "",
+        "x": 240,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "35b2f6b8b4a8d7a0",
+        "type": "ui_button",
+        "z": "100",
+        "name": "WO Completed?",
+        "group": "4",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "WO Completed?",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "{{msg.background}}",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 610,
+        "y": 1560,
+        "wires": [
+            [
+                "dae289bfccf838d3"
+            ]
+        ]
+    },
+    {
+        "id": "a23c43b0c03826f8",
+        "type": "function",
+        "z": "100",
+        "name": "Set New WO QTY",
+        "func": "if (flow.get(\"Add\") == true){\n    test = flow.get(\"QTYShrink\")+msg.payload;\n    flow.set(\"QTYShrink\",test);\n} if(flow.get(\"Scrap\")== true){\n    test = msg.payload;\n    flow.set(\"ScrapQTYTotal\", flow.get(\"ScrapQTYTotal\")+test);\n    flow.set(\"ScrapQTY\",0);\n}\nmsg.payload = test;\nflow.set(\"Add\",false);\nflow.set(\"Scrap\",false);\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1290,
+        "y": 1640,
+        "wires": [
+            [
+                "bbf9735c6110e425",
+                "44f5172144eb832c"
+            ]
+        ],
+        "info": "Function to set WO Qty"
+    },
+    {
+        "id": "084dce581ffebe59",
+        "type": "ui_button",
+        "z": "100",
+        "name": "Wire Run Out",
+        "group": "4",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Accept Wire Run Out: {{msg.payload.RunOutQty}} PCS",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "{{msg.background}}",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 800,
+        "y": 1640,
+        "wires": [
+            [
+                "dd04e01f8d1f838c"
+            ]
+        ]
+    },
+    {
+        "id": "c592152351d05a54",
+        "type": "function",
+        "z": "100",
+        "name": "Set RunOutQty",
+        "func": "msg.payload = {};\nmsg.payload.RunOutQty = Math.ceil(flow.get(\"LBSRemain\")/flow.get(\"LBSperPC\")).toLocaleString(\"en-US\");\nflow.set(\"RunOutQty\",msg.payload.RunOutQty);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 1640,
+        "wires": [
+            [
+                "084dce581ffebe59"
+            ]
+        ],
+        "info": "Function to Set RunOutQty"
+    },
+    {
+        "id": "1a956a106ef42d69",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "Go to Run",
+        "events": "change",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea460e2c2bf9672a",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "6",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "WO Set Up",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#0b5b7d",
+        "className": "<body>div {white-space: none;}</body>",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"1CH040_WORunning\",\"1CH040_MaintWO\",\"1CH040_QC\",\"1CH040_DSI\",\"1CH040_Machine\",\"1CH040_DownTime\",\"1CH040_Notif\"],\"show\":[\"1CH040_MachineSchedule\",\"1CH040_Checklist\"]}}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "1a956a106ef42d69"
+            ]
+        ]
+    },
+    {
+        "id": "0a5c3f53d6e2b086",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "6",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "label": "RUN Screen",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"1CH040_MachineSchedule\",\"1CH040_Checklist\",\"1CH040_MaintWO\",\"1CH040_Notif\"],\"show\":[\"1CH040_WORunning\",\"1CH040_DSI\",\"1CH040_QC\",\"1CH040_Machine\",\"1CH040_DownTime\"]}}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "1a956a106ef42d69"
+            ]
+        ]
+    },
+    {
+        "id": "1babf60d12f4b4ab",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "6",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Maint",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "orange",
+        "className": "",
+        "icon": "",
+        "payload": "{\"group\":{\"hide\":[\"1CH040_MachineSchedule\",\"1CH040_Checklist\",\"1CH040_WORunning\",\"1CH040_DSI\",\"1CH040_QC\",\"1CH040_Machine\",\"1CH040_DownTime\",\"1CH040_Notif\"],\"show\":[\"1CH040_MaintWO\"]}}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "1a956a106ef42d69"
+            ]
+        ]
+    },
+    {
+        "id": "0153a05da0149ffc",
+        "type": "function",
+        "z": "100",
+        "name": "Set API Params - Report Out 30+endtime",
+        "func": "msg.payload = {};\n\n//msg.payload.EmployeeNumber = flow.get(\"Badge\");\nmsg.payload.OrderNumber= flow.get(\"WO#\");\nmsg.payload.OperSeq = flow.get(\"OpSeq\");\nmsg.payload.Quantity = flow.get(\"Good_Count\")-flow.get(\"CurrentCount\");\nmsg.payload.ShiftCode = \"1\";\nmsg.payload.St = flow.get(\"Status\");\nmsg.payload.EndTime = flow.get(\"TagTime\");\nmsg.payload.EquipmentNumber = flow.get(\"Machine\");\nmsg.payload.TyHrs = flow.get(\"TyHrs\");\n\nmsg.topic = 'token';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1240,
+        "wires": [
+            [
+                "c6db692e4f9dc5f8"
+            ]
+        ]
+    },
+    {
+        "id": "748e4c589075325f",
+        "type": "function",
+        "z": "100",
+        "name": "Headers",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n   };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2940,
+        "y": 2700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ed2b92b18533dd7",
+        "type": "debug",
+        "z": "100",
+        "name": "Send to JDE",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3110,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "046e4c36c73cd62b",
+        "type": "function",
+        "z": "100",
+        "name": "Set RunSet",
+        "func": "msg.payload.down = 0;\nif (msg.payload.value == \"2\") {\n    flow.set(\"RunSet\",2);\n    msg.enabled = false;\n    msg.payload.value = flow.get(\"RunSet\");\n    return msg\n} else if (msg.payload.value == \"1\") {\n    flow.set(\"RunSet\",1);\n    msg.enabled = false;\n    msg.payload.value = flow.get(\"RunSet\");\n    return msg\n} else if (msg.payload.value == \"3\"){\n\n// This next piece will make sure that downtime only required if machine was in run\n// If machine was in set up and stopped, no downtime code needed, assuming down for set up still\n\n    if(flow.get(\"RunSet\") == 1){\n        msg.payload.down = 3;\n        msg.enabled = true;\n        msg.topic = \"show\";\n        msg.payload.value = flow.get(\"RunSet\");\n        return msg\n    } \n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 800,
+        "wires": [
+            [
+                "1b43f4d58bb24bcd"
+            ]
+        ],
+        "info": "This function manages different scenarios based on the value of msg.payload.value and the state of the machine."
+    },
+    {
+        "id": "656d73d6a2a521a2",
+        "type": "function",
+        "z": "100",
+        "name": "St = 30",
+        "func": "\nflow.set(\"Status\",\"30\")\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 1240,
+        "wires": [
+            [
+                "0153a05da0149ffc",
+                "5ed061f2f48fae94"
+            ]
+        ],
+        "info": "This is a Set Status function"
+    },
+    {
+        "id": "e30cb2713654895b",
+        "type": "function",
+        "z": "100",
+        "name": "Check WO Status",
+        "func": "msg.payload = {}\nmsg.payload.Good = flow.get(\"Good_Count\");\nmsg.payload.QTY = flow.get(\"QTYShrink\");\nmsg.enabled = true;\nmsg.background = \"green\";\n\n//msg.payload.Good = 5000;\n//msg.payload.QTY = 5000;\n\n\nif (msg.payload.Good < msg.payload.QTY){\n    msg.notif = true;\n\n} else {\n    msg.notif = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1560,
+        "wires": [
+            [
+                "ef492030b9d45447"
+            ]
+        ],
+        "info": "Function to check WO Status"
+    },
+    {
+        "id": "2f1a6c945b95509d",
+        "type": "inject",
+        "z": "100",
+        "name": "Trigger",
+        "props": [],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 135,
+        "y": 1560,
+        "wires": [
+            [
+                "e30cb2713654895b"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "970edefb9a274d32",
+        "type": "function",
+        "z": "100",
+        "name": "Set Variables",
+        "func": "\nflow.set(\"Branch_Plant\",\"111001\");\nflow.set(\"Machine\",\"1CH040\");\nflow.set(\"WCNum\",141187052);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nflow.set(\"Branch_Plant\",\"111001\");\nflow.set(\"Machine\",\"1CH040\");\nflow.set(\"BrankampMachineID\",30);\nflow.set(\"MachineName\",\"CH05\");",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 180,
+        "wires": [
+            []
+        ],
+        "info": "This function is used to set Branch_Plant,Machine and WCNum"
+    },
+    {
+        "id": "62a7d4f29f956bc3",
+        "type": "filter",
+        "z": "100",
+        "name": "Filter Out Op Stat",
+        "property": "payload.z_OPST_51",
+        "propertyType": "msg",
+        "asArray": false,
+        "itemProperty": "z_DOCO_38",
+        "itemPropertyType": "item",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "20",
+                "vt": "num",
+                "output": 1
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 1390,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7cf574531547923",
+        "type": "filter",
+        "z": "100",
+        "name": "Filter Out Op Stat",
+        "property": "payload.z_URAB_37",
+        "propertyType": "msg",
+        "asArray": false,
+        "itemProperty": "payload",
+        "itemPropertyType": "item",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "999",
+                "vt": "str",
+                "output": 1
+            },
+            {
+                "t": "neq",
+                "v": "999",
+                "vt": "num",
+                "output": 2
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1390,
+        "y": 220,
+        "wires": [
+            [
+                "6177823767e19521"
+            ],
+            [
+                "f1c97067442724c9"
+            ]
+        ]
+    },
+    {
+        "id": "45f45a82120e6bcd",
+        "type": "comment",
+        "z": "100",
+        "name": "API : WODetail",
+        "info": "",
+        "x": 2260,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "73405b3410434d36",
+        "type": "ui_text",
+        "z": "100",
+        "group": "4",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<font color=\"green\" size=4%>Status",
+        "format": "<font color=\"green\" size=4%>{{payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1315,
+        "y": 700,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "7c24f6223a64b4b6",
+        "type": "function",
+        "z": "100",
+        "name": "TyHrs=2 - Report Out 20+endtime",
+        "func": "msg.payload = {};\n\nmsg.payload.EmployeeNumber = flow.get(\"Badge\");\nmsg.payload.OrderNumber= flow.get(\"WO#\");\nmsg.payload.OperSeq = flow.get(\"OpSeq\");\nmsg.payload.Quantity = flow.get(\"Good_Count\")-flow.get(\"CurrentCount\");\nmsg.payload.ShiftCode = \"1\";\nmsg.payload.St = \"20\";\nmsg.payload.Time = flow.get(\"TagTime\");\nmsg.payload.EquipmentNumber = flow.get(\"Machine\");\n//msg.payload.TyHrs = 2;\n\nmsg.payload.timestamp = new Date();\nconst date = new Date(msg.payload.timestamp)\nconst options = {year: 'numeric', month: 'numeric', day: 'numeric'};\nmsg.payload.timestamp = date.toLocaleDateString('en-US', options)\n\nflow.set(\"ReportCount\",0);\nflow.set(\"CurrentCount\",flow.get(\"Good_Count\"));\n\nmsg.topic = 'token';\nreturn msg;\n\n// USE Equipment Number\n// Test Shift code 1 or 2\n// TyHrs - 2 set up, 1 run, 4 - good pcs, 5 - scrap pcs\n// status is being handled in ORCH",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2590,
+        "y": 2660,
+        "wires": [
+            [
+                "748e4c589075325f",
+                "8ed2b92b18533dd7"
+            ]
+        ]
+    },
+    {
+        "id": "d0fb3c9f4e65ea81",
+        "type": "function",
+        "z": "100",
+        "name": "TyHrs=1 - Report Out 20+begintime",
+        "func": "msg.payload = {};\n\n//msg.payload.EmployeeNumber = flow.get(\"Badge\");\nmsg.payload.OrderNumber= flow.get(\"WO#\");\nmsg.payload.OperSeq = flow.get(\"OpSeq\");\nmsg.payload.ShiftCode = \"1\";\nmsg.payload.St = \"20\";\nmsg.payload.BeginTime = flow.get(\"TagTime\");\nmsg.payload.EquipmentNumber = flow.get(\"Machine\");\nmsg.payload.TyHrs = 1;\n\nmsg.topic = 'token';\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2590,
+        "y": 2700,
+        "wires": [
+            [
+                "748e4c589075325f",
+                "8ed2b92b18533dd7"
+            ]
+        ]
+    },
+    {
+        "id": "cd27f49c49b48e62",
+        "type": "switch",
+        "z": "100",
+        "name": "TyHrs Auto Rule",
+        "property": "payload.value",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2260,
+        "y": 2640,
+        "wires": [
+            [
+                "7c24f6223a64b4b6",
+                "d0fb3c9f4e65ea81"
+            ],
+            [
+                "ae131342f0c59c22",
+                "f0f867a5b1ed1a2b"
+            ]
+        ]
+    },
+    {
+        "id": "ae131342f0c59c22",
+        "type": "function",
+        "z": "100",
+        "name": "TyHrs=1 - Report Out 20+endtime",
+        "func": "msg.payload = {};\n\n//msg.payload.EmployeeNumber = flow.get(\"Badge\");\nmsg.payload.OrderNumber= flow.get(\"WO#\");\nmsg.payload.OperSeq = flow.get(\"OpSeq\");\nmsg.payload.Quantity = flow.get(\"Good_Count\")-flow.get(\"CurrentCount\");\nmsg.payload.ShiftCode = \"1\";\nmsg.payload.St = \"20\";\nmsg.payload.EndTime = flow.get(\"TagTime\");\nmsg.payload.EquipmentNumber = flow.get(\"Machine\");\nmsg.payload.TyHrs = 1;\n\nflow.set(\"ReportCount\",0);\nflow.set(\"CurrentCount\",flow.get(\"Good_Count\"));\n\nmsg.topic = 'token';\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2590,
+        "y": 2740,
+        "wires": [
+            [
+                "748e4c589075325f",
+                "8ed2b92b18533dd7"
+            ]
+        ]
+    },
+    {
+        "id": "f0f867a5b1ed1a2b",
+        "type": "function",
+        "z": "100",
+        "name": "TyHrs=2 - Report Out 19+begintime",
+        "func": "msg.payload = {};\n\n//msg.payload.EmployeeNumber = flow.get(\"Badge\");\nmsg.payload.OrderNumber= flow.get(\"WO#\");\nmsg.payload.OperSeq = flow.get(\"OpSeq\");\nmsg.payload.ShiftCode = \"1\";\nmsg.payload.St = \"19\";\nmsg.payload.BeginTime = flow.get(\"TagTime\");\nmsg.payload.EquipmentNumber = flow.get(\"Machine\");\nmsg.payload.TyHrs = 2;\n\nmsg.topic = 'token';\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2590,
+        "y": 2780,
+        "wires": [
+            [
+                "748e4c589075325f",
+                "8ed2b92b18533dd7"
+            ]
+        ]
+    },
+    {
+        "id": "547948dfbc03d349",
+        "type": "switch",
+        "z": "100",
+        "name": "TyHrs Button Rule",
+        "property": "payload.value",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2270,
+        "y": 2740,
+        "wires": [
+            [
+                "d0fb3c9f4e65ea81"
+            ],
+            [
+                "f0f867a5b1ed1a2b"
+            ]
+        ]
+    },
+    {
+        "id": "4ac0f6971c51ed2c",
+        "type": "switch",
+        "z": "100",
+        "name": "TyHrs Button Rule",
+        "property": "payload.value",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2270,
+        "y": 2780,
+        "wires": [
+            [
+                "ae131342f0c59c22"
+            ],
+            [
+                "7c24f6223a64b4b6"
+            ]
+        ]
+    },
+    {
+        "id": "12dd6c5773126a36",
+        "type": "switch",
+        "z": "100",
+        "name": "ON/OFF",
+        "property": "payload.labor",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2080,
+        "y": 2760,
+        "wires": [
+            [
+                "547948dfbc03d349"
+            ],
+            [
+                "4ac0f6971c51ed2c"
+            ]
+        ]
+    },
+    {
+        "id": "6ad3098da82ec8af",
+        "type": "switch",
+        "z": "100",
+        "name": "ON/OFF",
+        "property": "payload.labor",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2100,
+        "y": 2640,
+        "wires": [
+            [
+                "cd27f49c49b48e62"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c6db692e4f9dc5f8",
+        "type": "function",
+        "z": "100",
+        "name": "Reset WO Info",
+        "func": "//*** MUST BE AFTER STATUS 30 MESSAGE SENT TO API ***//\n\nflow.set(\"RemainTime\",\"\");\n\nmsg.payload = {};\n\nmsg.payload.OrderNum = \"Indirect\";\nmsg.payload[\"Item Number\"] = \"\";\nmsg.payload[\"WO Desc\"] = \"\";\nmsg.payload[\"Order + Shrink\"] = \"\";\n\nflow.set(\"Status\",\"20\")\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 1240,
+        "wires": [
+            [
+                "6f773858d01e8b61"
+            ]
+        ]
+    },
+    {
+        "id": "1f2c6eabcd0497d2",
+        "type": "function",
+        "z": "100",
+        "name": "Set Stat",
+        "func": "if (flow.get(\"Status\") == \"30\"){\n    msg.payload = \"NA\";\n} else {\n    msg.payload = {};\n    msg.payload.labor = flow.get(\"Labor\");\n    msg.payload.value = flow.get(\"TyHrs\");\n    msg.payload.EmployeeNumber = flow.get(\"EmployeeNumber\")\n\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1940,
+        "y": 2760,
+        "wires": [
+            [
+                "12dd6c5773126a36",
+                "ebbc02f6f4169d5c"
+            ]
+        ]
+    },
+    {
+        "id": "61f00d651326a956",
+        "type": "ui_text",
+        "z": "100",
+        "group": "6",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "name": "Machine #",
+        "label": "",
+        "format": "<font color=\"white\" size=\"5%\">1CH040</font>",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2215,
+        "y": 320,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "5e6ee29f89f391b1",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "2",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reload MLS",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "{{msg.background}}",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "970edefb9a274d32",
+                "39d97cea44310a8a",
+                "5caf2c8a92e8e2c8",
+                "cba318c76c21e2bc"
+            ]
+        ]
+    },
+    {
+        "id": "9bf56daf4f388b1a",
+        "type": "trigger",
+        "z": "100",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "10",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1330,
+        "y": 880,
+        "wires": [
+            [
+                "ae64f3f63c27675e"
+            ]
+        ]
+    },
+    {
+        "id": "ae64f3f63c27675e",
+        "type": "switch",
+        "z": "100",
+        "name": "",
+        "property": "payload.down",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "3",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1470,
+        "y": 880,
+        "wires": [
+            [
+                "211f32493fd0d83f"
+            ],
+            [
+                "cc0d56a097340f2b",
+                "211f32493fd0d83f"
+            ]
+        ]
+    },
+    {
+        "id": "211f32493fd0d83f",
+        "type": "ui_template",
+        "z": "100",
+        "group": "7",
+        "name": "DownTime",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-init=\"init()\" id=\"pin_insert\" class=\"dialog\">\n    \n    <div class=\"dialog_content\">\n        \n        <div class=\"dialog_header\">\n            <h2 style=\"margin:10px\">DownTime Code</h2>\n        </div>\n        \n        <div class=\"dialog_body\">\n\n           <div layout=\"row\" layout-align=\"center\">\n                <div class=\"number_placeholder\">\n                    {{passcode}}\n                </div>\n\n            </div>\n            \n            <div layout=\"column\" layout-align=\"center\" style=\"margin-top: 10px\">\n                <div layout=\"row\" layout-align=\"center\">\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('ToolChange')\">ToolChange</md-button>\n                    </div>\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('Changeover')\">Changeover</md-button>\n                    </div>\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('Maintenance')\">Maintenance</md-button>\n                    </div>\n                </div>\n                 <div layout=\"row\" layout-align=\"center\">\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('Troubleshooting')\">Troubleshooting</md-button>\n                    </div>\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('NotScheduled')\">NotScheduled</md-button>\n                    </div>\n\n                </div>\n                 <div layout=\"row\" layout-align=\"center\">\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('OutofSpec')\">OutofSpec</md-button>\n                    </div>\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('QualityHold')\">QualityHold</md-button>\n                    </div>\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"add('Other')\">Other</md-button>\n                    </div>\n                </div>\n                 <div layout=\"row\" layout-align=\"center\">\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"confirm()\">\n                            <ng-md-icon icon=\"done\" style=\"color:#fff;\"></ng-md-icon>\n                        </md-button>\n                    </div>\n                    <div class=\"number_box\">\n                        <md-button class=\"pin\" ng-click=\"delete()\">\n                            <ng-md-icon icon=\"arrow_back\" style=\"color:#fff;\"></ng-md-icon>\n                        </md-button>\n                    </div>\n                </div>\n            </div> \n          \n        </div> <!--dialog_body-->\n    </div> <!--dialog_content-->\n</div>  <!--dialog-->\n\n\n<style>\n\n/* The Dialog (background) */\n.dialog {\n    display: none; /* Hidden by default */\n    position: fixed; /* Stay in place */\n    z-index: 9999; /* Sit on top */\n    left: 0;\n    top: 0;\n    width: 100%; /* Full width */\n    height: 100%; /* Full height */\n    overflow: auto; /* Enable scroll if needed */\n    background-color: rgb(0,0,0); /* Fallback color */\n    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */\n    -webkit-transform: translateZ(0px);\n    -webkit-transform: translate3d(0,0,0);\n    -webkit-perspective: 1000;\n}\n\n.dialog_content {\n    position: absolute;\n    background-color: #fff;\n    left: calc(50% - 170px);\n    top: 30px;\n    border-radius: 10px;\n    padding: 0;\n    width: 500px;\n    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);\n    -webkit-animation-name: animatetop;\n    animation-name: animatetop;\n    animation-duration: 0.4s;\n}\n\n/* Media query for smartphones (to Fix?) */\n@media only screen and (min-device-width : 375px) and (max-device-width : 667px) { \n    .dialog_content {\n    margin-top: 5%;\n    margin-left: 5%;\n}\n}\n\n/* Add Animation */\n@-webkit-keyframes animatetop {\n    from {top: -300px; opacity: 0} \n    to {top: 0; opacity: 1}\n}\n\n@keyframes animatetop {\n    from {top: -300px; opacity: 0}\n    to {top: 0; opacity: 1}\n}\n\n/* Dialog Header */\n.dialog_header {\n    padding: 2px 16px;\n    background-color: #03A9F4;\n    border-radius: 10px 10px 0 0;\n    color: white;\n}\n\n/* Dialog Body */\n.dialog_body {padding: 5px;}\n\n/* The Close Button */\n.close {\n    color: #fff;\n    float: right;\n    font-size: 28px;\n    font-weight: bold;\n    cursor: pointer;\n}\n\n.close:hover,\n.close:focus {\n    color: #1565C0;\n    text-decoration: none;\n    cursor: pointer;\n}\n\n/* __ */\n.number_placeholder{\n    width: 400px;\n    height: 34px;\n    margin: 10px;\n    font-size: 20pt;\n    text-align: center;\n    border-bottom: 1px solid black;\n}\n\n/* Number container */\n.number_box{\n    margin: 5px;\n}\n\n/* Buttons style */\n.pin {\n    min-height: 50px;\n    min-width: 50px;\n    font-weight: bold;\n    margin: 0px 10px 10px 0px;\n    box-shadow: 4px 4px 6px 0 #dadada;\n    background-color: #30B6F6;\n    color: #fff;\n}\n\n.pin:not([disabled]):hover {\n    background-color: #03A9F4;\n}\n/* WHAT IS THIS? */\n.btn1 {\n  color : rgb(49, 46, 46);\n  background-color: rgba(255, 222, 121, 0.96);\n  border-radius: 10px 0 0 10px;\n  font-size: 16px;\n}\n\n.btn1:not([disabled]):hover {\n  background-color: rgba(107, 103, 91, 0.96);\n  color: white;\n}\n\n.btn1[disabled] {\n  color : rgb(187, 187, 187);\n  background-color: rgba(230, 230, 230, 0.96);\n}\n\n</style>\n\n<script>\n\n/**\n * pin_dialog.js\n * Node-Red UI template for Node-Red Dashboard. \n * Custom dialog that asks for a PIN to allow actions\n * Enjoy it :). \n * -- Daniel\n *\n *\n * @license The Unlicense, http://unlicense.org/\n * @version 0.2\n * @author  Daniel Lando, https://github.com/robertsLando\n * @updated 2019-03-18\n * @link    ----\n *\n *\n */\n\nvar dialog;\n\n/* ==== */\n(function(scope) {\n    \n    scope.passcode = \"\";\n    scope.payload = \"\";\n    scope.inited = true;\n    \n    scope.init = function() {\n        scope.passcode = \"\";\n        //Hide the md-panel\n        $('#pin_insert').parent().parent().css(\"display\", \"none\");\n        //This trick make it works on smartphones too :)\n        dialog = $('#pin_insert').detach();\n        //remove any previously added pin dialog\n        $('.dialog').remove();\n    }\n    \n    scope.showDialog = function() {\n        dialog.appendTo(document.body);\n        dialog.css(\"display\", \"block\");\n    }\n    \n    scope.closeDialog = function(){\n        dialog.css(\"display\", \"none\");\n    }\n    \n    scope.add = function(value) {\n        if(scope.passcode.length < 1) {\n            scope.passcode = scope.passcode + value;\n            if(scope.passcode.length == 1) {\n                console.log(\"The four digit code was entered\");\n                   \n            }\n        }\n    }\n \n    scope.delete = function() {\n        if(scope.passcode.length > 0) {\n            scope.passcode = scope.passcode.substring(0, scope.passcode.length - scope.passcode.length);\n        }\n    }\n    \n    scope.confirm = function() {\n        if(scope.passcode.length > 0) {\n            scope.send({topic: \"Last Downtime Code: \", payload : scope.passcode});\n            scope.closeDialog();\n            scope.passcode = \"\";\n            scope.payload = \"\";\n        }\n    }\n\n    scope.$watch('msg', function(data) {\n        if(data && data.topic){\n            switch(data.topic){\n               case \"show\":\n                   if(scope.inited){\n                        scope.payload = data.payload;\n                        scope.showDialog();\n                   }\n                   else\n                        scope.inited = true;\n                break;\n                case \"close\": \n                    scope.closeDialog(); \n                break;\n            }\n        }\n    });\n})(scope);\n\n</script>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1650,
+        "y": 880,
+        "wires": [
+            [
+                "3b40957e7bb9d164"
+            ]
+        ]
+    },
+    {
+        "id": "39d97cea44310a8a",
+        "type": "function",
+        "z": "100",
+        "name": "Green Button",
+        "func": "if (msg.payload == \"1\"){\n    msg.payload = {};\n    msg.background = \"green\";\n    node.send(msg);\n}\nif (msg.payload.jde__status == \"SUCCESS\"){\n    msg.payload = {};\n    msg.background = \"grey\";\n    node.send(msg);\n}\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "5e6ee29f89f391b1"
+            ]
+        ],
+        "info": "This function appears to be processing different conditions based on the content of the message payload and the jde__status property"
+    },
+    {
+        "id": "3d1de11ba0db2d44",
+        "type": "ui_text",
+        "z": "100",
+        "group": "4",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "Downtime Code",
+        "label": "<font color={{msg.color}} size=4%>{{topic}}",
+        "format": "<font color={{msg.color}} size=4%>{{payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2215,
+        "y": 880,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "3b40957e7bb9d164",
+        "type": "function",
+        "z": "100",
+        "name": "setTime",
+        "func": "const time = new Date();\nconst options = {hour12:false, timestyle:\"short\", year:\"numeric\",month:\"short\",day:\"2-digit\"};\n\nmsg.time = time.toLocaleTimeString('en-US', options);\n\nmsg.color = \"firebrick\";\n\nmsg.payload.down = 0;\nflow.set(\"DT\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1820,
+        "y": 880,
+        "wires": [
+            [
+                "3d1de11ba0db2d44",
+                "8466f7210747b696",
+                "5323688961fb71e8",
+                "9bf56daf4f388b1a"
+            ]
+        ],
+        "info": "This function sets the current time, initializing certain properties of the msg object"
+    },
+    {
+        "id": "8466f7210747b696",
+        "type": "trigger",
+        "z": "100",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "pay",
+        "duration": "5",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1980,
+        "y": 880,
+        "wires": [
+            [
+                "b251a7b368e83c9e"
+            ]
+        ]
+    },
+    {
+        "id": "b251a7b368e83c9e",
+        "type": "function",
+        "z": "100",
+        "name": "Text Color",
+        "func": "msg.color = \"gray\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2120,
+        "y": 880,
+        "wires": [
+            [
+                "3d1de11ba0db2d44"
+            ]
+        ],
+        "info": "Function to add color"
+    },
+    {
+        "id": "f1fe9fef82b876cc",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 2,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2420,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "d710395f6fe58692",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 3,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2460,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "a94c8a0637a33713",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "3",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2500,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "36d7faf7a9cfcf70",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2540,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "d1553a18caad4f46",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "5",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "5",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2580,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "ffe63b6eb8a5c8b4",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "6",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "6",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2620,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "fbcc641032531e9b",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "7",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "7",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2660,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "f295164ee484c40d",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 9,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "8",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "8",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2700,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "3ff9094218c0c102",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 10,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "9",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "9",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2740,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "5a53900f63fd0284",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 11,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "0",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2780,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "5b6bdb58bbec5823",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 14,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "label": "Submit",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2860,
+        "wires": [
+            [
+                "3256bf63fdd9e36c"
+            ]
+        ]
+    },
+    {
+        "id": "3256bf63fdd9e36c",
+        "type": "function",
+        "z": "100",
+        "name": "Set msg.complete",
+        "func": "msg.complete = true\nmsg.payload = ''\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 2820,
+        "wires": [
+            [
+                "57ec7a71eb25578d",
+                "f930cad19e40efe2",
+                "b68a55d83849ecfc"
+            ]
+        ]
+    },
+    {
+        "id": "b68a55d83849ecfc",
+        "type": "function",
+        "z": "100",
+        "name": "UI",
+        "func": "\nmsg.payload = {\"group\":{\"hide\":[\"1CH040_Pin\"],\"show\":[\"1CH040_DSI\"]}};\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 2820,
+        "wires": [
+            [
+                "23eb7167cf660bc1"
+            ]
+        ]
+    },
+    {
+        "id": "23eb7167cf660bc1",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "",
+        "events": "change",
+        "x": 740,
+        "y": 2820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3dfa8542025edcd8",
+        "type": "function",
+        "z": "100",
+        "name": "Set Pin",
+        "func": "if (flow.get(\"Add\")==true) {\n    flow.set(\"AddNum\",msg.payload);\n    msg.payload = Number (flow.get(\"AddNum\"));\n    return [msg,null,null]\n} else if (flow.get(\"Scrap\")==false) {\n    flow.set(\"EmployeeNumber\",msg.payload);\n    msg.payload = flow.get(\"EmployeeNumber\");\n    return [null,msg,null]\n} else {\n    msg.payload = Number (msg.payload);\n    return [null,null,msg]\n}\n",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 2600,
+        "wires": [
+            [
+                "0cfaa260c59bc345"
+            ],
+            [
+                "73df437d364fdfbb"
+            ],
+            [
+                "ef72f1a49965d525"
+            ]
+        ],
+        "outputLabels": [
+            "AddNum",
+            "Emp",
+            ""
+        ]
+    },
+    {
+        "id": "73df437d364fdfbb",
+        "type": "link out",
+        "z": "100",
+        "name": "EmpNum",
+        "mode": "link",
+        "links": [
+            "ac708e97d1a14e6e",
+            "c3ebc8ed6e0391ab"
+        ],
+        "x": 795,
+        "y": 2600,
+        "wires": []
+    },
+    {
+        "id": "ac708e97d1a14e6e",
+        "type": "link in",
+        "z": "100",
+        "name": "link in 1",
+        "links": [
+            "5ed061f2f48fae94",
+            "73df437d364fdfbb"
+        ],
+        "x": 1745,
+        "y": 2760,
+        "wires": [
+            [
+                "1f2c6eabcd0497d2"
+            ]
+        ]
+    },
+    {
+        "id": "13c30b5e2f133360",
+        "type": "http request",
+        "z": "100",
+        "name": "PRO_ORC_GetMachineRatesInfo",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://jde5-ais.pemnet.com:63081/jderest/v3/orchestrator/PRO_ORC_GetMachineRatesInfo",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2320,
+        "y": 180,
+        "wires": [
+            [
+                "f2826c403da276db",
+                "5c20ed789573474a",
+                "645d2e6824b0af89"
+            ]
+        ]
+    },
+    {
+        "id": "5c20ed789573474a",
+        "type": "ui_text",
+        "z": "100",
+        "group": "3",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "STD Rate",
+        "format": "{{msg.payload.STDPPM}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2535,
+        "y": 60,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "f2826c403da276db",
+        "type": "ui_text",
+        "z": "100",
+        "group": "3",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "MAX Rate",
+        "format": "{{msg.payload.MAXPPM}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2675,
+        "y": 20,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "1b43f4d58bb24bcd",
+        "type": "debug",
+        "z": "100",
+        "name": "gateway",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "f930cad19e40efe2",
+        "type": "function",
+        "z": "100",
+        "name": "EmployeeNumberInput",
+        "func": "var msgElt = {};\n\nif (msg.complete == true){\n    msg.payload = flow.get(\"Pass\")\n    flow.set(\"Pass\",\"\")\n    msgElt.payload = \"\"\n    return [msg,msgElt];\n} else if (msg.payload == \"clear\"){\n    pass = \"\";\n    flow.set(\"Pass\",pass);\n    msgElt = {};\n    msgElt.payload = pass;\n    return [null,msgElt]\n} else {\n    pass = flow.get(\"Pass\");\n    pass = pass + msg.payload;\n    flow.set(\"Pass\",pass);\n    msgElt = {};\n    msgElt.payload = pass;\n    return [null,msgElt]\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"Pass\",\"\")",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 2600,
+        "wires": [
+            [
+                "3dfa8542025edcd8"
+            ],
+            [
+                "0c0a51122c0b1aa5"
+            ]
+        ]
+    },
+    {
+        "id": "0c0a51122c0b1aa5",
+        "type": "ui_text",
+        "z": "100",
+        "group": "8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Number Field",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 660,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "502122c447a6fb01",
+        "type": "change",
+        "z": "100",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Machine_Status",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.time",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2200,
+        "y": 920,
+        "wires": [
+            [
+                "1a67b5b0eb66dd0f"
+            ]
+        ]
+    },
+    {
+        "id": "1a67b5b0eb66dd0f",
+        "type": "mqtt out",
+        "z": "100",
+        "name": "CH040",
+        "topic": "CH040",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "657711a877f59fbf",
+        "x": 2350,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "5323688961fb71e8",
+        "type": "change",
+        "z": "100",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Unknown",
+                "fromt": "str",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Production",
+                "fromt": "str",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Set Up",
+                "fromt": "str",
+                "to": "2",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "ToolChange",
+                "fromt": "str",
+                "to": "8",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Changeover",
+                "fromt": "str",
+                "to": "2",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Maintenance",
+                "fromt": "str",
+                "to": "5",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Troubleshooting",
+                "fromt": "str",
+                "to": "7",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "NotScheduled",
+                "fromt": "str",
+                "to": "11",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "OutofSpec",
+                "fromt": "str",
+                "to": "13",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "QualityHold",
+                "fromt": "str",
+                "to": "14",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Stopped",
+                "fromt": "str",
+                "to": "10",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Other",
+                "fromt": "str",
+                "to": "10",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "3",
+                "fromt": "str",
+                "to": "10",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2010,
+        "y": 920,
+        "wires": [
+            [
+                "502122c447a6fb01"
+            ]
+        ]
+    },
+    {
+        "id": "764b12cce440d5f8",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "8",
+        "order": 13,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "clear",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2820,
+        "wires": [
+            [
+                "f930cad19e40efe2"
+            ]
+        ]
+    },
+    {
+        "id": "ba8cd256084194aa",
+        "type": "link in",
+        "z": "100",
+        "name": "Run Screen",
+        "links": [
+            "35572913c1ec2817",
+            "57f68577b0c4e402",
+            "5b880c3c1aac387f",
+            "47e0fadaa601b53a",
+            "a061882377f95901"
+        ],
+        "x": 25,
+        "y": 120,
+        "wires": [
+            [
+                "0a5c3f53d6e2b086"
+            ]
+        ]
+    },
+    {
+        "id": "35572913c1ec2817",
+        "type": "link out",
+        "z": "100",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "ba8cd256084194aa"
+        ],
+        "x": 2005,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "ebbc02f6f4169d5c",
+        "type": "ui_text",
+        "z": "100",
+        "group": "9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Last Log by:",
+        "format": "{{msg.payload.EmployeeNumber}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2090,
+        "y": 2800,
+        "wires": []
+    },
+    {
+        "id": "3043b7a6b50c4961",
+        "type": "link in",
+        "z": "100",
+        "name": "link in 2",
+        "links": [
+            "7ebc9a11086a6d41"
+        ],
+        "x": 35,
+        "y": 80,
+        "wires": [
+            [
+                "ea460e2c2bf9672a"
+            ]
+        ]
+    },
+    {
+        "id": "b9fb2c0122cbf5e2",
+        "type": "debug",
+        "z": "100",
+        "name": "MLS Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload.jde__status",
+        "targetType": "msg",
+        "statusVal": "payload.jde__status",
+        "statusType": "auto",
+        "x": 1330,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "3ebe4cc032c9df7d",
+        "type": "ui_text",
+        "z": "100",
+        "group": "10",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Notif Text",
+        "label": "WO#: ",
+        "format": "{{msg.payload.WorkOrderNo}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 380,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "016cf93585dada07",
+        "type": "ui_button",
+        "z": "100",
+        "name": "Confirm",
+        "group": "10",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Confirm",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "confirm",
+        "topicType": "msg",
+        "x": 380,
+        "y": 1440,
+        "wires": [
+            [
+                "1ddef256a060bc74"
+            ]
+        ]
+    },
+    {
+        "id": "67e823690bdebc3f",
+        "type": "ui_button",
+        "z": "100",
+        "name": "Decline",
+        "group": "10",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Decline",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 380,
+        "y": 1480,
+        "wires": [
+            [
+                "9458b5d54644082c"
+            ]
+        ]
+    },
+    {
+        "id": "dd04e01f8d1f838c",
+        "type": "function",
+        "z": "100",
+        "name": "Run Out",
+        "func": "msg.payload = (flow.get(\"RunOutQty\"));\nmsg.payload = Number (msg.payload.replace(\",\",\"\"));\n\nflow.set(\"Add\",true);\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 1640,
+        "wires": [
+            [
+                "a23c43b0c03826f8"
+            ]
+        ]
+    },
+    {
+        "id": "01268b6e6474fe19",
+        "type": "function",
+        "z": "100",
+        "name": "Set msg",
+        "func": "msg = {};\nmsg.payload = {};\nmsg.payload.WorkOrderNo = flow.get(\"WO#\");\nmsg.payload.Quantity = flow.get(\"Good_Count\");\nmsg.payload.Scrap = 0;\nmsg.payload.Part = flow.get(\"PartNum\");\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 1320,
+        "wires": [
+            [
+                "3ebe4cc032c9df7d",
+                "89cc04651c9baacf",
+                "b0f2bf1ac2fc24b7"
+            ]
+        ],
+        "info": "Sts GoodCount and Part Number Message"
+    },
+    {
+        "id": "89cc04651c9baacf",
+        "type": "ui_text",
+        "z": "100",
+        "group": "10",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Notif Text",
+        "label": "Part: ",
+        "format": "{{msg.payload.Part}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 380,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "b0f2bf1ac2fc24b7",
+        "type": "ui_text",
+        "z": "100",
+        "group": "10",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Notif Text",
+        "label": "Good Count: ",
+        "format": "{{msg.payload.Quantity}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 380,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "1ddef256a060bc74",
+        "type": "function",
+        "z": "100",
+        "name": "Confirm",
+        "func": "msg.payload = {\"group\":{\"show\":[\"1CH040_Machine\"],\"hide\":[\"1CH040_Notif\"]}};\nflow.set(\"OpStat\",30);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1440,
+        "wires": [
+            [
+                "2374fda6c585cad4",
+                "4b2489d6f6048941",
+                "d1d898d278656c4b",
+                "3960e723d5deacf2",
+                "c364ee5ea45c36c7"
+            ]
+        ],
+        "info": "OptStat Confirmation"
+    },
+    {
+        "id": "2374fda6c585cad4",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "",
+        "events": "change",
+        "x": 800,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d1c14d0866f7033",
+        "type": "link in",
+        "z": "100",
+        "name": "WOCompIn",
+        "links": [
+            "14458b6ae5cc7553",
+            "85328b796be97335"
+        ],
+        "x": 125,
+        "y": 1320,
+        "wires": [
+            [
+                "01268b6e6474fe19"
+            ]
+        ]
+    },
+    {
+        "id": "4b2489d6f6048941",
+        "type": "link out",
+        "z": "100",
+        "name": "WOCompOut",
+        "mode": "link",
+        "links": [
+            "dd56bd8c930422f9",
+            "e8829a913edb1870"
+        ],
+        "x": 655,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "dd56bd8c930422f9",
+        "type": "link in",
+        "z": "100",
+        "name": "WOCompIn2",
+        "links": [
+            "4b2489d6f6048941"
+        ],
+        "x": 125,
+        "y": 1240,
+        "wires": [
+            [
+                "656d73d6a2a521a2"
+            ]
+        ]
+    },
+    {
+        "id": "bbf9735c6110e425",
+        "type": "link out",
+        "z": "100",
+        "name": "WONewQtyOut",
+        "mode": "link",
+        "links": [
+            "a59e0f028ca6d20e",
+            "3f433024402adeed"
+        ],
+        "x": 1495,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "6f773858d01e8b61",
+        "type": "link out",
+        "z": "100",
+        "name": "WOResetOut",
+        "mode": "link",
+        "links": [
+            "93a37143d3edb9db",
+            "2301d3f2fd655b8b",
+            "a0d995831e438941"
+        ],
+        "x": 915,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "93a37143d3edb9db",
+        "type": "link in",
+        "z": "100",
+        "name": "WOResetIn",
+        "links": [
+            "6f773858d01e8b61"
+        ],
+        "x": 2425,
+        "y": 260,
+        "wires": [
+            [
+                "2d743fa9b204b7fd"
+            ]
+        ]
+    },
+    {
+        "id": "5ed061f2f48fae94",
+        "type": "link out",
+        "z": "100",
+        "name": "WOStatOut",
+        "mode": "link",
+        "links": [
+            "ac708e97d1a14e6e"
+        ],
+        "x": 305,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "156e2a6d99a1be26",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "6",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Machine Selection",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "grey",
+        "className": "",
+        "icon": "",
+        "payload": "MachineSelection",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "1a956a106ef42d69"
+            ]
+        ]
+    },
+    {
+        "id": "3c915b4ee93aca1b",
+        "type": "mqtt out",
+        "z": "100",
+        "name": "CH040",
+        "topic": "CH040",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "657711a877f59fbf",
+        "x": 3110,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b9755a8634f913cc",
+        "type": "function",
+        "z": "100",
+        "name": "Set Rates",
+        "func": "flow.set(\"STDRate\",msg.payload.STDPPM);\nflow.set(\"MAXRate\",msg.payload.MAXPPM);\n\nmsg = {};\nmsg.payload = {};\nmsg.payload.Target_Run_Rate = flow.get(\"STDRate\");\nmsg.payload.Max_Rate = flow.get(\"MAXRate\");\nmsg.payload.Part_Number = flow.get(\"PartNum\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2820,
+        "y": 60,
+        "wires": [
+            [
+                "3c915b4ee93aca1b",
+                "09d76b4afab0d248"
+            ]
+        ],
+        "info": "This function sets values related to standard rate, maximum rate, and part number in the flow context, and then retrieving these values to structure a message payload."
+    },
+    {
+        "id": "ea9716b853442e2d",
+        "type": "http request",
+        "z": "100",
+        "name": "USE THIS ONE - Send Machine Status",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://dv-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORCH_LoadWOTimeLoginInfo",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "basic",
+        "senderr": false,
+        "headers": [],
+        "x": 3150,
+        "y": 2820,
+        "wires": [
+            [
+                "46c2556474c95d9d",
+                "2b65d738d45e688f"
+            ]
+        ]
+    },
+    {
+        "id": "4316be555e2df6f2",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "3",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Enter DownTime",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "grey",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1320,
+        "y": 840,
+        "wires": [
+            [
+                "d87b956226a2f59b"
+            ]
+        ]
+    },
+    {
+        "id": "d87b956226a2f59b",
+        "type": "function",
+        "z": "100",
+        "name": "DT Entry Pop-Up ",
+        "func": "msg.payload = {};\nmsg.payload.down = 3;\nmsg.topic = \"show\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1510,
+        "y": 840,
+        "wires": [
+            [
+                "211f32493fd0d83f"
+            ]
+        ],
+        "info": "This is a function to show downtime pop up."
+    },
+    {
+        "id": "7ca46f496cd1da6b",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "4",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "One Time Add ",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "{{msg.background}}",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 600,
+        "y": 1700,
+        "wires": [
+            [
+                "7f19baa691a82210"
+            ]
+        ]
+    },
+    {
+        "id": "7f19baa691a82210",
+        "type": "function",
+        "z": "100",
+        "name": "Show Pin",
+        "func": "flow.set(\"Add\",true);\nmsg.payload = {\"group\":{\"show\":[\"1CH040_Pin\"],\"hide\":[\"1CH040_DSI\"]}};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 1700,
+        "wires": [
+            [
+                "05a7272de51e74eb"
+            ]
+        ],
+        "info": "This function shows pin"
+    },
+    {
+        "id": "05a7272de51e74eb",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "",
+        "events": "change",
+        "x": 920,
+        "y": 1700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0cfaa260c59bc345",
+        "type": "link out",
+        "z": "100",
+        "name": "AddNum",
+        "mode": "link",
+        "links": [
+            "b1a33ef60e3c7c15"
+        ],
+        "x": 765,
+        "y": 2560,
+        "wires": []
+    },
+    {
+        "id": "b1a33ef60e3c7c15",
+        "type": "link in",
+        "z": "100",
+        "name": "link in 4",
+        "links": [
+            "ef72f1a49965d525",
+            "0cfaa260c59bc345"
+        ],
+        "x": 1125,
+        "y": 1680,
+        "wires": [
+            [
+                "a23c43b0c03826f8"
+            ]
+        ]
+    },
+    {
+        "id": "2843164257ad0e2e",
+        "type": "inject",
+        "z": "100",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 3080,
+        "wires": [
+            [
+                "7774373ac8e0657a"
+            ]
+        ]
+    },
+    {
+        "id": "7774373ac8e0657a",
+        "type": "function",
+        "z": "100",
+        "name": "Get Flow Variables",
+        "func": "msgElt = {};\nmsgElt.payload = {};\nmsgElt.payload = flow.keys();\n\nvar len = msgElt.payload.length;\nvar i = 0;\n\nmsg.payload = {};\n\nfor (i=0;i<len;i++) {\n    a = msgElt.payload[i];\n    msg.payload[a] = flow.get(a);\n}\n\nreturn [msg,null];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\n\nmsg = {};\nmsg.payload = {};\nmsg.payload[\"sent\"] = 1;\n\n\nreturn [null,msg];",
+        "finalize": "// Code added here will be run when the\n// node is being stopped or re-deployed.\nmsgElt = {};\nmsgElt.payload = {};\nmsgElt.payload = flow.keys();\n\nvar len = msgElt.payload.length;\nvar i = 0;\n\nmsg = {};\nmsg.payload = {};\n\nfor (i=0;i<len;i++) {\n    a = msgElt.payload[i];\n    msg.payload[a] = flow.get(a);\n    flow.set(a,flow.get(a),\"file\");\n}\nmsg.payload[\"sent\"] = 1;\nreturn [msg,null];",
+        "libs": [],
+        "x": 650,
+        "y": 3080,
+        "wires": [
+            [
+                "df76cb9f2b05340b"
+            ],
+            []
+        ],
+        "inputLabels": [
+            "Triggered"
+        ],
+        "outputLabels": [
+            "On Message and On Stop",
+            "On Start"
+        ]
+    },
+    {
+        "id": "df76cb9f2b05340b",
+        "type": "debug",
+        "z": "100",
+        "name": "Flow variables",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 3060,
+        "wires": []
+    },
+    {
+        "id": "f3ed59185fc2771b",
+        "type": "file in",
+        "z": "100",
+        "name": "Read Context",
+        "filename": "payload",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": true,
+        "x": 500,
+        "y": 3120,
+        "wires": [
+            [
+                "ec57fe234859fc14"
+            ]
+        ]
+    },
+    {
+        "id": "82566cf8e3eaa775",
+        "type": "function",
+        "z": "100",
+        "name": "Get Flow Variables",
+        "func": "msgElt = {};\nmsgElt.payload = {};\nmsgElt.payload = Object.keys(msg.payload);\n\nvar len = msgElt.payload.length;\nvar i = 0;\n\nmsg.payload = {};\n\nfor (i=0;i<len;i++) {\n    a = msgElt.payload[i];\n    msg.payload[a] = flow.get(a,\"file\");\n    flow.set(a,msg.payload[a]);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 3120,
+        "wires": [
+            [
+                "df76cb9f2b05340b",
+                "5c6461e73b90d1a7"
+            ]
+        ]
+    },
+    {
+        "id": "ec57fe234859fc14",
+        "type": "json",
+        "z": "100",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 690,
+        "y": 3120,
+        "wires": [
+            [
+                "82566cf8e3eaa775"
+            ]
+        ]
+    },
+    {
+        "id": "ad60d6ecefdd87de",
+        "type": "inject",
+        "z": "100",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 3120,
+        "wires": [
+            [
+                "b24d5e52b66e0e2c"
+            ]
+        ]
+    },
+    {
+        "id": "9d080829e190b67e",
+        "type": "function",
+        "z": "100",
+        "name": "Set Total_Count",
+        "func": "flow.set(\"Total_Count\", msg.payload.value)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 900,
+        "wires": [
+            [
+                "913d5f1c8591d7a5"
+            ]
+        ],
+        "info": "This function is used for the total counts"
+    },
+    {
+        "id": "1822bd38fff20008",
+        "type": "switch",
+        "z": "100",
+        "name": "Value",
+        "property": "payload.attribute",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "Good_Count",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Machine_Status",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Current_Run_Rate",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "Total_Count",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Run_Register",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 690,
+        "y": 840,
+        "wires": [
+            [
+                "617046ce31876155"
+            ],
+            [
+                "046e4c36c73cd62b",
+                "cc0d56a097340f2b"
+            ],
+            [
+                "4a41508bbd25a7b8"
+            ],
+            [
+                "9d080829e190b67e"
+            ],
+            [
+                "87b7244478159d4d"
+            ]
+        ]
+    },
+    {
+        "id": "cc0d56a097340f2b",
+        "type": "change",
+        "z": "100",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.value",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 970,
+        "y": 740,
+        "wires": [
+            [
+                "530ce2dc6ba9fa8f"
+            ]
+        ]
+    },
+    {
+        "id": "c2e7bbeeed163271",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "11",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Report Scrap",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 600,
+        "y": 1760,
+        "wires": [
+            [
+                "bf157e0ad28ef2e0"
+            ]
+        ]
+    },
+    {
+        "id": "bf157e0ad28ef2e0",
+        "type": "function",
+        "z": "100",
+        "name": "Show Pin",
+        "func": "flow.set(\"Scrap\",true);\nmsg.payload = {\"group\":{\"show\":[\"1CH040_Pin\"],\"hide\":[\"1CH040_DSI\"]}};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 1760,
+        "wires": [
+            [
+                "d5bfdefcaa0cbead"
+            ]
+        ],
+        "info": "This function shows pin"
+    },
+    {
+        "id": "d5bfdefcaa0cbead",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "",
+        "events": "change",
+        "x": 920,
+        "y": 1760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef72f1a49965d525",
+        "type": "link out",
+        "z": "100",
+        "name": "Scrap",
+        "mode": "link",
+        "links": [
+            "b1a33ef60e3c7c15"
+        ],
+        "x": 805,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "feff1ad6711ce9b6",
+        "type": "change",
+        "z": "100",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "save",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2160,
+        "y": 500,
+        "wires": [
+            [
+                "3944f2d714fe69b8"
+            ]
+        ]
+    },
+    {
+        "id": "773a53d0b443f8be",
+        "type": "subflow:c59719cd71299db1",
+        "z": "100",
+        "name": "",
+        "x": 1870,
+        "y": 480,
+        "wires": [
+            [
+                "35572913c1ec2817",
+                "feff1ad6711ce9b6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9458b5d54644082c",
+        "type": "function",
+        "z": "100",
+        "name": "Confirm",
+        "func": "msg.payload = {\"group\":{\"show\":[\"1CH040_Machine\"],\"hide\":[\"1CH040_Notif\"]}};\nflow.set(\"OpStat\",30);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1480,
+        "wires": [
+            [
+                "9ef0df0fd511fd4d"
+            ]
+        ],
+        "info": "OptStatus Confirmation"
+    },
+    {
+        "id": "9ef0df0fd511fd4d",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "",
+        "events": "change",
+        "x": 700,
+        "y": 1480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec5b332129739025",
+        "type": "subflow:ba7038a52b6c04be",
+        "z": "100",
+        "name": "",
+        "x": 640,
+        "y": 2740,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "57ec7a71eb25578d",
+        "type": "function",
+        "z": "100",
+        "name": "function 1",
+        "func": "msg.payload = {};\nmsg.payload.BadgeNumber = flow.get(\"Pass\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 2920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d424483281966fa",
+        "type": "ui_switch",
+        "z": "100",
+        "name": "",
+        "label": "<size=5%>Labor ",
+        "tooltip": "",
+        "group": "9",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-2x fa-toggle-on ",
+        "oncolor": "green",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-2x fa-toggle-off",
+        "offcolor": "grey",
+        "animate": true,
+        "className": "",
+        "x": 175,
+        "y": 1080,
+        "wires": [
+            [
+                "9998ea63b9e2be98",
+                "564cea3fa6211ca2"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "9998ea63b9e2be98",
+        "type": "subflow:73c9668643fa63b3",
+        "z": "100",
+        "d": true,
+        "name": "Labor message",
+        "x": 260,
+        "y": 1160,
+        "wires": [
+            [
+                "57f68577b0c4e402"
+            ],
+            [
+                "1d424483281966fa"
+            ]
+        ]
+    },
+    {
+        "id": "57f68577b0c4e402",
+        "type": "link out",
+        "z": "100",
+        "name": "link out 9",
+        "mode": "link",
+        "links": [
+            "f4e20afdebd56ef7",
+            "ba8cd256084194aa"
+        ],
+        "x": 415,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "f6e1c9c13a5ad1bf",
+        "type": "comment",
+        "z": "100",
+        "name": "Confirm Tab",
+        "info": "",
+        "x": 90,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "43932a337825d64f",
+        "type": "subflow:d440ce3753a1d478",
+        "z": "100",
+        "name": "API call messages",
+        "x": 1030,
+        "y": 300,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d1d898d278656c4b",
+        "type": "function",
+        "z": "100",
+        "name": "Set ShortOrder",
+        "func": "if (flow.get('Good_Count') < flow.get('QTYShrink')) {\n    flow.set('ShortOrder', 1);\n    msg.payload.Machine = flow.get(\"Machine\");\n    msg.payload.Branch_Plant = flow.get(\"Branch_Plant\");\n    msg.payload.Good = flow.get(\"Good_Count\");\n    msg.payload.QTY = flow.get(\"QTYShrink\");\n    msg.payload.WorkOrderNo = flow.get(\"WO#\");\n    msg.payload.QTYRemain = flow.get (\"QTYShrink\") - flow.get(\"Good_Count\");\n    msg.payload.Material = flow.get(\"Material\");\n    \n    return msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1400,
+        "wires": [
+            [
+                "9faf16eeaeb4dadc"
+            ]
+        ],
+        "info": "This is a function to Set ShortOrder"
+    },
+    {
+        "id": "9faf16eeaeb4dadc",
+        "type": "function",
+        "z": "100",
+        "name": "Header",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n   };\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1380,
+        "wires": [
+            [
+                "dc82388a14ca37ad"
+            ]
+        ]
+    },
+    {
+        "id": "dc82388a14ca37ad",
+        "type": "template",
+        "z": "100",
+        "name": "Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n   \"title\" : \"SHORT ORDER - NEW WO CREATION REQUIRED\",\n  \"text\": \"Machine: {{payload.Machine}},\n           Branch Plant: {{payload.Branch_Plant}}, \n           WO#: {{payload.WorkOrderNo}},\n           Good_Count: {{payload.Good}}, \n\t\t   QTY: {{payload.QTY}},\n\t\t   QTYRemain: {{payload.QTYRemain}},\n\t\t   Material: {{payload.Material}}\"\n  \n  \n    }",
+        "output": "str",
+        "x": 860,
+        "y": 1380,
+        "wires": [
+            [
+                "0fe62ad8e20449dc"
+            ]
+        ]
+    },
+    {
+        "id": "0fe62ad8e20449dc",
+        "type": "http request",
+        "z": "100",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "https://pemnetsp.webhook.office.com/webhookb2/1736c664-6bed-4926-9223-2ae8b8f04734@14e34c25-dbe7-4374-a026-99d90b7392f3/IncomingWebhook/6656bdb939ec4a8b8a43dae29dd08cf7/4242fef8-d597-42c6-90e7-b0bfbc97f59c",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 970,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2132de7a3a1a29cd",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "\nlet a = 0;\nlet b = \"CH.CH001.CH040.WO_Comp_DINT\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2880,
+        "y": 460,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "aeee7f4f6793e780",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "let a = 2;\nlet b = \"CH.CH001.CH040.M1_Run_Register\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2880,
+        "y": 520,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "7404b0ff8acd8c50",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "let a = flow.get(\"WO#\");\nlet b = \"CH.CH001.CH040.Work_Order_Number\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2870,
+        "y": 580,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "d9c3d6027581a4f1",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "let a = flow.get(\"QTYShrink\");\nlet b = \"CH.CH001.CH040.Target_WO_Quantity\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3040,
+        "y": 600,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "55f90315b5587d56",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "let a = flow.get(\"PartNum\");\nlet b = \"CH.CH001.CH040.Part_Number\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3030,
+        "y": 660,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "52b112c6679bc31b",
+        "type": "mqtt out",
+        "z": "100",
+        "name": "",
+        "topic": "iotgateway/write",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "657711a877f59fbf",
+        "x": 3370,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "8c08a94a7a1892b5",
+        "type": "inject",
+        "z": "100",
+        "name": "On complete",
+        "props": [
+            {
+                "p": "payload.value",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 2350,
+        "y": 40,
+        "wires": [
+            [
+                "2132de7a3a1a29cd"
+            ]
+        ]
+    },
+    {
+        "id": "5174cb31ae518bea",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "",
+        "events": "change",
+        "x": 620,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "564cea3fa6211ca2",
+        "type": "function",
+        "z": "100",
+        "name": "Set Labor",
+        "func": "flow.set(\"Labor\",msg.payload);\nif (msg.payload == true){\n    msg.payload = {\"group\":{\"show\":[\"1CH040_Pin\"],\"hide\":[\"1CH040_DSI\"]}};\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1080,
+        "wires": [
+            [
+                "5174cb31ae518bea",
+                "4c6d9f3eeb8e0a91"
+            ]
+        ],
+        "info": "This function is used to set Labor"
+    },
+    {
+        "id": "f61148b35fb04dac",
+        "type": "inject",
+        "z": "100",
+        "name": "On complete",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "x": 3050,
+        "y": 800,
+        "wires": [
+            [
+                "09d76b4afab0d248"
+            ]
+        ]
+    },
+    {
+        "id": "09d76b4afab0d248",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "let a = flow.get(\"STDRate\");\nlet b = \"CH.CH001.CH040.Target_Run_Rate\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3360,
+        "y": 800,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "45c5cd8d868408f5",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "\nlet a = flow.get(\"EmployeeNumber\");\nlet b = \"CH.CH001.CH040.Operator_Badge_Number\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3360,
+        "y": 840,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "f2cd244c45daa672",
+        "type": "inject",
+        "z": "100",
+        "name": "On complete",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "x": 3050,
+        "y": 840,
+        "wires": [
+            [
+                "45c5cd8d868408f5"
+            ]
+        ]
+    },
+    {
+        "id": "2e74a39749d775f3",
+        "type": "switch",
+        "z": "100",
+        "name": "",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "SUCCESS",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "SUCCESS",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 360,
+        "wires": [
+            [
+                "06dd195483faf6b6"
+            ],
+            [
+                "daf7e873323c0ff4"
+            ]
+        ]
+    },
+    {
+        "id": "06dd195483faf6b6",
+        "type": "function",
+        "z": "100",
+        "name": "successDataStamp",
+        "func": "if (msg.payload.status == \"SUCCESS\") {\n  let timestamp = Date.now();\n    flow.set(\"storedData\", {\n    timestamp: timestamp,\n    data: msg.payload\n  });\n  \n  return msg;\n}\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 580,
+        "wires": [
+            []
+        ],
+        "info": " This function appears to handle cases where the status in the message payload is \"SUCCESS."
+    },
+    {
+        "id": "daf7e873323c0ff4",
+        "type": "function",
+        "z": "100",
+        "name": "failedStatus",
+        "func": "if (msg.payload.status != \"SUCCESS\") {\n  let storedData = flow.get(\"storedData\") || {};\n  storedData.failedTimestamp = Date.now();\n  flow.set(\"storedData\", storedData);\n  return {\n    error: msg.payload.status,\n    payload: storedData.data\n  };\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 640,
+        "wires": [
+            [
+                "b7b83d6002691bc7"
+            ]
+        ],
+        "info": "This function stores the relevant data from the message payload and attaches an error message along with returning the stored data"
+    },
+    {
+        "id": "b7b83d6002691bc7",
+        "type": "function",
+        "z": "100",
+        "name": "Timestamp",
+        "func": "let newData = msg.payload;\nlet storedData = flow.get(\"storedData\") || {};\nlet timestamp = Date.now();\nlet combinedData = {\n  timestamp: timestamp,\n  data: newData\n};\nif (storedData.data) {\n  combinedData.storedData = storedData;\n}\nreturn {\n  payload: JSON.stringify(combinedData)\n};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 640,
+        "wires": [
+            [
+                "b0947197f59eee5d"
+            ]
+        ],
+        "info": "This function appears to be combining new data from the message payload with previously stored data from the flow context, along with a timestamp."
+    },
+    {
+        "id": "b0947197f59eee5d",
+        "type": "function",
+        "z": "100",
+        "name": "trasnferFlowData",
+        "func": "msg.payload = {};\nmsgElt = {};\nmsgElt.payload = {};\nmsgElt.payload = msg.payload;\nmsgElt.payload = flow.keys();\nvar len = msgElt.payload.length;\nvar i = 0;\nfor (i=0;i<len;i++) {\n a = msgElt.payload[i];\n msg.payload[a] = flow.get(a);\n}\nreturn [msg,null];\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 640,
+        "wires": [
+            []
+        ],
+        "info": "This function is entriely logic based to return playlod msg."
+    },
+    {
+        "id": "2b65d738d45e688f",
+        "type": "switch",
+        "z": "100",
+        "name": "",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "SUCCESS",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "SUCCESS",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 3010,
+        "y": 2900,
+        "wires": [
+            [
+                "5dbafce92eed8cfd"
+            ],
+            [
+                "c103b3fc117527d2"
+            ]
+        ]
+    },
+    {
+        "id": "5dbafce92eed8cfd",
+        "type": "function",
+        "z": "100",
+        "name": "dataStatus",
+        "func": "if (msg.payload.status == \"SUCCESS\") {\n  let timestamp = Date.now();\n    flow.set(\"storedData\", {\n    timestamp: timestamp,\n    data: msg.payload\n  });\n  \n  return msg;\n}\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3170,
+        "y": 2880,
+        "wires": [
+            []
+        ],
+        "info": "this function is storing data in the flow context when the status in the message payload is \"SUCCESS.\" "
+    },
+    {
+        "id": "c103b3fc117527d2",
+        "type": "function",
+        "z": "100",
+        "name": "handelData ",
+        "func": "if (msg.payload.status != \"SUCCESS\") {\n  let storedData = flow.get(\"storedData\") || {};\n  storedData.failedTimestamp = Date.now();\n  flow.set(\"storedData\", storedData);\n  return {\n    error: msg.payload.status,\n    payload: storedData.data\n  };\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3190,
+        "y": 2920,
+        "wires": [
+            [
+                "b53fd96f56603dad"
+            ]
+        ],
+        "info": "This function retrieves stored data from the flow context and attaches an error message along with returning the stored data as the payload."
+    },
+    {
+        "id": "b53fd96f56603dad",
+        "type": "function",
+        "z": "100",
+        "name": "dateTimeStamp",
+        "func": "let newData = msg.payload;\nlet storedData = flow.get(\"storedData\") || {};\nlet timestamp = Date.now();\nlet combinedData = {\n  timestamp: timestamp,\n  data: newData\n};\nif (storedData.data) {\n  combinedData.storedData = storedData;\n}\nreturn {\n  payload: JSON.stringify(combinedData)\n};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3360,
+        "y": 2920,
+        "wires": [
+            [
+                "89b1ce5c7436daf8"
+            ]
+        ],
+        "info": "This function is creating a combined data structure with a timestamp, which includes both the new data from the message payload and possibly the previously stored data."
+    },
+    {
+        "id": "89b1ce5c7436daf8",
+        "type": "function",
+        "z": "100",
+        "name": "keyFlow",
+        "func": "msg.payload = {};\nmsgElt = {};\nmsgElt.payload = {};\nmsgElt.payload = msg.payload;\nmsgElt.payload = flow.keys();\nvar len = msgElt.payload.length;\nvar i = 0;\nfor (i=0;i<len;i++) {\n a = msgElt.payload[i];\n msg.payload[a] = flow.get(a);\n}\nreturn [msg,null];\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3560,
+        "y": 2920,
+        "wires": [
+            []
+        ],
+        "info": "The function is generating a dynamic payload by iterating through the keys present in the flow context."
+    },
+    {
+        "id": "913d5f1c8591d7a5",
+        "type": "function",
+        "z": "100",
+        "name": "updateGoodParts",
+        "func": "if (msg.payload == true) {\n    flow.set(\"LastBinCheckCount\", (flow.get(\"Good_Count\")+flow.get(\"GoodParts\")));\n    flow.set(\"GoodButton\", flow.get(\"GoodButton\")+1);\n    flow.set(\"GoodParts\",0);\n    msg.payload = {};\n    msg.payload.value = flow.get(\"GoodParts\");\n}\nelse {\n    let GoodParts = msg.payload.value - flow.get(\"LastBinCheckCount\")-flow.get(\"ScrapQTYTotal\");\n    flow.set(\"GoodParts\", GoodParts);\n    msg.payload = {};\n    msg.payload.value = flow.get(\"GoodParts\");\n}    \nreturn msg",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 1000,
+        "wires": [
+            [
+                "b1e9e246254d8ee3",
+                "fa1db5fe443458a8"
+            ],
+            [
+                "87441996731c9dec"
+            ]
+        ],
+        "info": "This function is managing the count and updates good parts based on the value of msg.payload"
+    },
+    {
+        "id": "fa1db5fe443458a8",
+        "type": "ui_button",
+        "z": "100",
+        "name": "Good Parts",
+        "group": "11",
+        "order": 1,
+        "width": 4,
+        "height": "2",
+        "passthru": false,
+        "label": "<font size=3% >Good Parts: [{{msg.payload.value}} PCS]",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1220,
+        "y": 1100,
+        "wires": [
+            [
+                "913d5f1c8591d7a5",
+                "ae7fff3fa49c3485"
+            ]
+        ]
+    },
+    {
+        "id": "b1e9e246254d8ee3",
+        "type": "ui_button",
+        "z": "100",
+        "name": "Bad Parts",
+        "group": "11",
+        "order": 2,
+        "width": 4,
+        "height": "2",
+        "passthru": false,
+        "label": "<font size=3% >Bad Parts: [{{msg.payload.value}} PCS]",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#871900",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1390,
+        "y": 1000,
+        "wires": [
+            [
+                "e76981361c4af6de"
+            ]
+        ]
+    },
+    {
+        "id": "e76981361c4af6de",
+        "type": "function",
+        "z": "100",
+        "name": "processTruePayload",
+        "func": "if (msg.payload == true) {\n    let goodCount = flow.get(\"Good_Count\");\n    let badCount = flow.get(\"GoodParts\");\n    let ScrapQTY = badCount;\n    flow.set('Scrap', true);\n    flow.set(\"BadButton\", flow.get(\"BadButton\")+1);\n    //flow.set(\"LastBinCheckCount\", (flow.get(\"Good_Count\")+flow.get(\"GoodParts\")));\n    //msg.payload = { ScrapQTY: flow.get(\"ScrapQTYTotal\")};\n    flow.set(\"GoodParts\", 0);\n    msg.payload = ScrapQTY;\n    msg2 = {};\n    msg2.payload = {};\n    msg2.payload.value = flow.get(\"Total_Count\");\n    return [msg,msg2];\n}\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1600,
+        "y": 940,
+        "wires": [
+            [
+                "a23c43b0c03826f8"
+            ],
+            [
+                "913d5f1c8591d7a5"
+            ]
+        ],
+        "info": "This function is used to displya Good Part, Bad Part , Scrap and Total Quantity."
+    },
+    {
+        "id": "ae7fff3fa49c3485",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "\nlet a = flow.get(\"LastBinCheckCount\");\nlet b = \"CH.CH001.CH040.Good_Count\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3360,
+        "y": 880,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "44f5172144eb832c",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "\nlet a = flow.get(\"ScrapQTYTotal\");\nlet b = \"CH.CH001.CH040.Scrap_Count\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3360,
+        "y": 920,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "87b7244478159d4d",
+        "type": "function",
+        "z": "100",
+        "name": "Run_Register",
+        "func": "msg.payload.down = 0;\n\nif (flow.get(\"SetUp\")==true){\n    flow.set(\"RunSet\",2);\n    msg.enabled = false;\n    msg.payload.down = 2;\n    return msg\n} else if ((flow.get(\"SetUp\")==false)&&(msg.payload.value == 0)){\n    msg.payload.down = 3;\n    msg.enabled = true;\n    msg.topic = \"show\";\n    return msg\n} else if ((flow.get(\"SetUp\")==false)&&(msg.payload.value == 1)){\n    msg.payload.down = 0;\n    msg.enabled = false;\n    msg.topic = \"close\";\n    return msg\n}\n// This next piece will make sure that downtime only required if machine was in run\n// If machine was in set up and stopped, no downtime code needed, assuming down for set up still\n\n\n// 0 is stopped, 1 is running, 2 is set up",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 960,
+        "wires": [
+            [
+                "4316be555e2df6f2",
+                "9bf56daf4f388b1a"
+            ]
+        ],
+        "info": "This function handles the configuration and control of a specific process based on certain conditions, adjusting the msg object properties accordingly.\r\n\r\n\r\n\r\n\r\n"
+    },
+    {
+        "id": "e8829a913edb1870",
+        "type": "link in",
+        "z": "100",
+        "name": "link in 5",
+        "links": [
+            "4b2489d6f6048941"
+        ],
+        "x": 2775,
+        "y": 500,
+        "wires": [
+            [
+                "2132de7a3a1a29cd"
+            ]
+        ]
+    },
+    {
+        "id": "a445815313f1d86c",
+        "type": "ui_button",
+        "z": "100",
+        "name": "",
+        "group": "3",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Set Up Complete",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 3170,
+        "y": 1000,
+        "wires": [
+            [
+                "8f504f9682efd3ef",
+                "6ccd2591d3b89eb8"
+            ]
+        ]
+    },
+    {
+        "id": "8f504f9682efd3ef",
+        "type": "function",
+        "z": "100",
+        "name": "WO Write",
+        "func": "let a = 1;\nlet b = \"CH.CH001.CH040.M1_Run_Register\";\n\nmsg.payload = [{\n    \"id\":b,\n    \"v\":a\n    }];\n//msg.topic = \"PLC/write\";\nflow.set(\"SetUp\",false);\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3360,
+        "y": 960,
+        "wires": [
+            [
+                "52b112c6679bc31b"
+            ]
+        ]
+    },
+    {
+        "id": "c3ebc8ed6e0391ab",
+        "type": "link in",
+        "z": "100",
+        "name": "link in 6",
+        "links": [
+            "73df437d364fdfbb"
+        ],
+        "x": 3155,
+        "y": 880,
+        "wires": [
+            [
+                "45c5cd8d868408f5"
+            ]
+        ]
+    },
+    {
+        "id": "e79c9b7a5298611a",
+        "type": "function",
+        "z": "100",
+        "name": "Headers",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n    'Authorization': 'Basic ' + Buffer.from('NODERED:L&M2023').toString('base64'),\n   \n\n   };\n\nmsg.payload = {};\nmsg.payload.Machine = flow.get(\"Machine\");\nmsg.payload.Branch_Plant = flow.get(\"Branch_Plant\");\nmsg.payload.WorkOrderNo = 2355617;\nmsg.color = \"white\"\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2240,
+        "y": 580,
+        "wires": [
+            [
+                "742198e56b023788"
+            ]
+        ]
+    },
+    {
+        "id": "742198e56b023788",
+        "type": "http request",
+        "z": "100",
+        "name": "GetWOHDRInfo",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://jde5-ais.pemnet.com:63081/jderest/v3/orchestrator/PENN_ORCH_GetWOHDRInfo",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 2460,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d968bf3a1ca5769a",
+        "type": "inject",
+        "z": "100",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 2050,
+        "y": 580,
+        "wires": [
+            [
+                "e79c9b7a5298611a"
+            ]
+        ]
+    },
+    {
+        "id": "3f433024402adeed",
+        "type": "link in",
+        "z": "100",
+        "name": "link in 7",
+        "links": [
+            "bbf9735c6110e425"
+        ],
+        "x": 2915,
+        "y": 640,
+        "wires": [
+            [
+                "d9c3d6027581a4f1",
+                "dbd9e8f05feb5ec8"
+            ]
+        ]
+    },
+    {
+        "id": "dbd9e8f05feb5ec8",
+        "type": "trigger",
+        "z": "100",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "2",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 3080,
+        "y": 1080,
+        "wires": [
+            [
+                "a385f4a30696a707"
+            ]
+        ]
+    },
+    {
+        "id": "a385f4a30696a707",
+        "type": "function",
+        "z": "100",
+        "name": "MSG Pop-Up",
+        "func": "if (flow.get(\"AddNum\") == 0 && flow.get(\"ScrapQTY\") == 0){\n    msg.payload = {};\n    msg.payload = 'PLC WO QTY has been updated to: ' + flow.get(\"QTYShrink\") + ' pcs'\n} else if (flow.get(\"ScrapQTY\") == 0) {\n    msg.payload = {};\n    msg.payload = 'PLC WO QTY has been updated by: ' + flow.get(\"AddNum\") + ' pcs'\n} else {\n    msg.payload = {};\n    msg.payload = 'PLC WO QTY has been reduced by: ' + flow.get(\"ScrapQTY\") + ' pcs'   \n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3300,
+        "y": 1080,
+        "wires": [
+            [
+                "3173b2c266c24b0b"
+            ]
+        ]
+    },
+    {
+        "id": "3173b2c266c24b0b",
+        "type": "ui_toast",
+        "z": "100",
+        "position": "top right",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "Brankamp QTY Update",
+        "x": 3500,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "9e3260aa814a7d95",
+        "type": "inject",
+        "z": "100",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1590,
+        "y": 640,
+        "wires": [
+            [
+                "9fedcc2bcdd6f1f7"
+            ]
+        ]
+    },
+    {
+        "id": "9fedcc2bcdd6f1f7",
+        "type": "function",
+        "z": "100",
+        "name": "getTotalCount",
+        "func": "msg = {};\nmsg.payload = {};\nmsg.payload.value = flow.get(\"Total_Count\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1740,
+        "y": 660,
+        "wires": [
+            [
+                "913d5f1c8591d7a5"
+            ]
+        ]
+    },
+    {
+        "id": "3960e723d5deacf2",
+        "type": "function",
+        "z": "100",
+        "name": "buildPayload",
+        "func": "msg.payload.Machine = flow.get(\"Machine\");\nmsg.payload.Branch_Plant = flow.get(\"Branch_Plant\");\nmsg.payload.Good = flow.get(\"Good_Count\");\nmsg.payload.QTY = flow.get(\"QTYShrink\");\nmsg.payload.WorkOrderNo = flow.get(\"WO#\");\nmsg.payload.QTYRemain = flow.get (\"QTYShrink\") - flow.get(\"Good_Count\");\nmsg.payload.Material = flow.get(\"Material\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 1320,
+        "wires": [
+            [
+                "bd48f83fdc0481c2"
+            ]
+        ]
+    },
+    {
+        "id": "bd48f83fdc0481c2",
+        "type": "function",
+        "z": "100",
+        "name": "Header",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n   };\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1320,
+        "wires": [
+            [
+                "41d4774572e25027"
+            ]
+        ]
+    },
+    {
+        "id": "41d4774572e25027",
+        "type": "template",
+        "z": "100",
+        "name": "Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n   \"title\" : \"WO Completed\",\n  \"text\": \"Machine: {{payload.Machine}},\n           Branch Plant: {{payload.Branch_Plant}}, \n           WO#: {{payload.WorkOrderNo}},\n           Good_Count: {{payload.Good}}, \n\t\t   QTY: {{payload.QTY}},\n\t\t   QTYRemain: {{payload.QTYRemain}},\n\t\t   Material: {{payload.Material}}\"\n  \n  \n    }",
+        "output": "str",
+        "x": 800,
+        "y": 1320,
+        "wires": [
+            [
+                "0fe62ad8e20449dc"
+            ]
+        ]
+    },
+    {
+        "id": "dae289bfccf838d3",
+        "type": "switch",
+        "z": "100",
+        "name": "",
+        "property": "WO#",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "Indirect",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 1560,
+        "wires": [
+            [
+                "cfc1c98cceb96860"
+            ]
+        ]
+    },
+    {
+        "id": "cfc1c98cceb96860",
+        "type": "switch",
+        "z": "100",
+        "name": "",
+        "property": "GoodParts",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 904.8958129882812,
+        "y": 1561.1112060546875,
+        "wires": [
+            [
+                "6cd5b111e93a8f3f"
+            ],
+            [
+                "85328b796be97335",
+                "b2f41b5b3e398e0c"
+            ]
+        ]
+    },
+    {
+        "id": "b2f41b5b3e398e0c",
+        "type": "function",
+        "z": "100",
+        "name": "Confirm",
+        "func": "msg.payload = {\"group\":{\"hide\":[\"1CH040_Machine\"],\"show\":[\"1CH040_Notif\"]}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 1500,
+        "wires": [
+            [
+                "6738132e8d6d2d49"
+            ]
+        ],
+        "info": "For Machine Number"
+    },
+    {
+        "id": "6cd5b111e93a8f3f",
+        "type": "function",
+        "z": "100",
+        "name": "function 66",
+        "func": "msg.payload = \"Please accept/reject final bin count\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 1560,
+        "wires": [
+            [
+                "5983db850c2d4492"
+            ]
+        ],
+        "info": "Function that accept/reject final bin count"
+    },
+    {
+        "id": "6738132e8d6d2d49",
+        "type": "ui_ui_control",
+        "z": "100",
+        "name": "",
+        "events": "all",
+        "x": 1180,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85328b796be97335",
+        "type": "link out",
+        "z": "100",
+        "name": "WOComp",
+        "mode": "link",
+        "links": [
+            "9d1c14d0866f7033"
+        ],
+        "x": 984.8958129882812,
+        "y": 1601.1112060546875,
+        "wires": []
+    },
+    {
+        "id": "5983db850c2d4492",
+        "type": "ui_toast",
+        "z": "100",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1330,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "6ccd2591d3b89eb8",
+        "type": "function",
+        "z": "100",
+        "name": "Disable",
+        "func": "msg.enabled = false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3360,
+        "y": 1000,
+        "wires": [
+            [
+                "a445815313f1d86c"
+            ]
+        ]
+    },
+    {
+        "id": "933453cc3ad12113",
+        "type": "function",
+        "z": "100",
+        "name": "Enable",
+        "func": "msg.enabled = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2660,
+        "y": 1000,
+        "wires": [
+            [
+                "a445815313f1d86c"
+            ]
+        ]
+    },
+    {
+        "id": "2301d3f2fd655b8b",
+        "type": "link in",
+        "z": "100",
+        "name": "WOResetIn",
+        "links": [
+            "6f773858d01e8b61"
+        ],
+        "x": 2885,
+        "y": 1000,
+        "wires": [
+            [
+                "933453cc3ad12113"
+            ]
+        ]
+    },
+    {
+        "id": "645d2e6824b0af89",
+        "type": "delay",
+        "z": "100",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2680,
+        "y": 60,
+        "wires": [
+            [
+                "b9755a8634f913cc"
+            ]
+        ]
+    },
+    {
+        "id": "8ed0ffa3a8fda246",
+        "type": "inject",
+        "z": "100",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 770,
+        "y": 1180,
+        "wires": [
+            [
+                "6f773858d01e8b61"
+            ]
+        ],
+        "icon": "font-awesome/fa-hand-stop-o"
+    },
+    {
+        "id": "7396ebd057f4ebb9",
+        "type": "ui_template",
+        "z": "100",
+        "group": "2",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\nbody.nr-dashboard-theme {\n    font-size: 16x !important;\n}\n.md-toolbar-tools h1 {\n    font-size: 18px !important;\n}\n    .tabulator{\n        font-size:26px;\n    }\n\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1640,
+        "y": 100,
+        "wires": [
+            [
+                "ce09abf9997dc542"
+            ]
+        ]
+    },
+    {
+        "id": "950745bef338dd96",
+        "type": "function",
+        "z": "100",
+        "name": "Pull Values",
+        "func": "msg.payload = { \n    \n    OrderNum : flow.get(\"WO#\") || flow.get(\"WO#\", \"file\"),\n    \"Item Number\" : flow.get(\"PartNum\") || flow.get(\"PartNum\", \"file\"),\n    \"WO Desc\" : flow.get(\"Desc\") || flow.get(\"Desc\", \"file\"),\n    \"Order + Shrink\" : flow.get(\"QTYShrink\") || flow.get(\"QTYShrink\", \"file\"), \n    STDPPM : flow.get(\"STDRate\") || flow.get(\"STDRate\", \"file\"),\n    MAXPPM : flow.get(\"MAXRate\") || flow.get(\"MAXRate\", \"file\")\n\n   \n    };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2345,
+        "y": 80,
+        "wires": [
+            [
+                "a88e70e1fcf9c56b"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "530ce2dc6ba9fa8f",
+        "type": "change",
+        "z": "100",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "17",
+                "fromt": "str",
+                "to": "No Operator",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "16",
+                "fromt": "str",
+                "to": "Waiting",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "15",
+                "fromt": "num",
+                "to": "Start Up",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "14",
+                "fromt": "num",
+                "to": "Quality Hold",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "13",
+                "fromt": "num",
+                "to": "Out of Spec",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "12",
+                "fromt": "num",
+                "to": "Material Issue",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "11",
+                "fromt": "num",
+                "to": "Not Scheduled",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "10",
+                "fromt": "num",
+                "to": "No DT Code",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "No Comms",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "Running",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "2",
+                "fromt": "num",
+                "to": "Changeover",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "3",
+                "fromt": "num",
+                "to": "Stopped",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "4",
+                "fromt": "num",
+                "to": "Scheduled Maint",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "5",
+                "fromt": "num",
+                "to": "Unplanned Maint",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "6",
+                "fromt": "num",
+                "to": "Operator Maint",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "7",
+                "fromt": "num",
+                "to": "Troubleshooting",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "8",
+                "fromt": "num",
+                "to": "Tool Change",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "9",
+                "fromt": "num",
+                "to": "Thread Roller",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 740,
+        "wires": [
+            [
+                "062dc238d258fc6b",
+                "73405b3410434d36"
+            ]
+        ]
+    },
+    {
+        "id": "023cac4f3f852fef",
+        "type": "switch",
+        "z": "100",
+        "name": "",
+        "property": "WO#",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Indirect",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "Indirect",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1830,
+        "y": 360,
+        "wires": [
+            [
+                "773a53d0b443f8be"
+            ],
+            [
+                "fd03cc0228c91afc"
+            ]
+        ]
+    },
+    {
+        "id": "fd03cc0228c91afc",
+        "type": "subflow:03d3f9b9acb259da",
+        "z": "100",
+        "name": "WO Error Msg",
+        "x": 1780,
+        "y": 420,
+        "wires": [
+            [
+                "a061882377f95901"
+            ]
+        ]
+    },
+    {
+        "id": "a061882377f95901",
+        "type": "link out",
+        "z": "100",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "ba8cd256084194aa"
+        ],
+        "x": 1915,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "733789d5c1699c38",
+        "type": "function",
+        "z": "100",
+        "name": "Save 1st and 2nd value",
+        "func": "flow.set(\"firstValue\",msg.payload[0]);\nflow.set(\"secondValue\",msg.payload[1]);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 420,
+        "wires": [
+            [
+                "ce09abf9997dc542"
+            ]
+        ],
+        "info": "The function store values from msg.payload"
+    },
+    {
+        "id": "3944f2d714fe69b8",
+        "type": "function",
+        "z": "100",
+        "name": "Next Job Save",
+        "func": "var firstValue = {};\nvar secondValue = {};\n\nfirstValue.payload= flow.get(\"firstValue\");\nsecondValue.payload = flow.get(\"secondValue\");\n\nif ( msg.payload.z_URAB_37 == firstValue.payload.z_URAB_37) {\n   flow.set(\"NextJob\",secondValue);\n}\n\nelse {\n    flow.set(\"NextJob\",firstValue);\n}\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 440,
+        "wires": [
+            [
+                "c02e5919a0cc1df5"
+            ]
+        ],
+        "info": "The function is comparing a value from the msg.payload object with values stored in the flow context as firstValue and secondValue."
+    },
+    {
+        "id": "b24d5e52b66e0e2c",
+        "type": "function",
+        "z": "100",
+        "name": "calling flow ID",
+        "func": "msg.payload = node.path;\nconst result = msg.payload;\nconst firstPart = result.split(\"/\")[0];\nvar filename = '/data/context/' + firstPart + '/flow.json';\nmsg.payload = filename;\nreturn msg;\n\n\n\n\n\n\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 3120,
+        "wires": [
+            [
+                "f3ed59185fc2771b"
+            ]
+        ]
+    },
+    {
+        "id": "ed4c62a4e49498b2",
+        "type": "link in",
+        "z": "100",
+        "name": "Set Dash In",
+        "links": [
+            "5c6461e73b90d1a7"
+        ],
+        "x": 2275,
+        "y": 80,
+        "wires": [
+            [
+                "950745bef338dd96"
+            ]
+        ]
+    },
+    {
+        "id": "5c6461e73b90d1a7",
+        "type": "link out",
+        "z": "100",
+        "name": "Set Dash",
+        "mode": "link",
+        "links": [
+            "ed4c62a4e49498b2",
+            "ecec864592d14e6d"
+        ],
+        "x": 1045,
+        "y": 3160,
+        "wires": []
+    },
+    {
+        "id": "87441996731c9dec",
+        "type": "function",
+        "z": "100",
+        "name": "Header + Msg",
+        "func": "msg.headers = {\n    'Content-Type': 'application/json',\n    'Accept-Language': 'en_US',\n    'accept':'application/json',\n   };\n\nmsgE = {};\nmsgE.payload = {};\nmsgE.payload.Machine = flow.get(\"Machine\");\nmsgE.payload.WO = flow.get(\"WO#\");\nmsgE.payload.Error = msg.payload;\n\n\nreturn msgE;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1405,
+        "y": 1120,
+        "wires": [
+            [
+                "0ceb782c5ef060e8"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "0ceb782c5ef060e8",
+        "type": "subflow:4a94aecb94ac68aa",
+        "z": "100",
+        "name": "Error_Notif_Teams",
+        "x": 1455,
+        "y": 1120,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "4a5e6598cbe805aa",
+        "type": "function",
+        "z": "100",
+        "name": "Pull Values",
+        "func": "msg.payload = {};\nmsg.payload.value = flow.get(\"Good_Parts\")|| flow.get(\"Good_Parts\", \"file\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1085,
+        "y": 1160,
+        "wires": [
+            [
+                "b1e9e246254d8ee3",
+                "fa1db5fe443458a8"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ecec864592d14e6d",
+        "type": "link in",
+        "z": "100",
+        "name": "Set Dash In",
+        "links": [
+            "5c6461e73b90d1a7"
+        ],
+        "x": 1015,
+        "y": 1160,
+        "wires": [
+            [
+                "4a5e6598cbe805aa"
+            ]
+        ]
+    },
+    {
+        "id": "6b94929f667757e5",
+        "type": "inject",
+        "z": "100",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 490,
+        "y": 1140,
+        "wires": [
+            [
+                "4c6d9f3eeb8e0a91"
+            ]
+        ]
+    },
+    {
+        "id": "4c6d9f3eeb8e0a91",
+        "type": "function",
+        "z": "100",
+        "name": "Operator_Present",
+        "func": "msg={};\nmsg.payload = {};\nmsg.payload.Operator_Present = flow.get(\"Labor\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 1120,
+        "wires": [
+            [
+                "607a61ffafe93afb",
+                "c4fb65e61d32d75f"
+            ]
+        ],
+        "info": "This function is used for operator attendance"
+    },
+    {
+        "id": "607a61ffafe93afb",
+        "type": "mqtt out",
+        "z": "100",
+        "name": "CH040",
+        "topic": "CH040",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "657711a877f59fbf",
+        "x": 930,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "c364ee5ea45c36c7",
+        "type": "function",
+        "z": "100",
+        "name": "Labor Off",
+        "func": "msg.payload = {};\nmsg.payload = false;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 1040,
+        "wires": [
+            [
+                "1d424483281966fa"
+            ]
+        ]
+    },
+    {
+        "id": "c4fb65e61d32d75f",
+        "type": "debug",
+        "z": "100",
+        "name": "debug 123",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "d2f775884d59631e",
+        "type": "ui_spacer",
+        "z": "100",
+        "name": "spacer",
+        "group": "6",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b224b0140954d86e",
+        "type": "ui_spacer",
+        "z": "100",
+        "name": "spacer",
+        "group": "8",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2",
+        "type": "ui_group",
+        "name": "MachineSchedule",
+        "tab": "1",
+        "order": 6,
+        "disp": true,
+        "width": "14",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "3",
+        "type": "ui_group",
+        "name": "WORunning",
+        "tab": "1",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "657711a877f59fbf",
+        "type": "mqtt-broker",
+        "name": "(Local) MQTT Broker",
+        "broker": "dmfgdev-eg.pemnet.com",
+        "port": "1884",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4",
+        "type": "ui_group",
+        "name": "Machine",
+        "tab": "1",
+        "order": 7,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5",
+        "type": "ui_group",
+        "name": "Checklist",
+        "tab": "1",
+        "order": 5,
+        "disp": true,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6",
+        "type": "ui_group",
+        "name": "MENU",
+        "tab": "1",
+        "order": 1,
+        "disp": false,
+        "width": "22",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7",
+        "type": "ui_group",
+        "name": "DownTime",
+        "tab": "1",
+        "order": 10,
+        "disp": false,
+        "width": "5",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8",
+        "type": "ui_group",
+        "name": "Pin",
+        "tab": "1",
+        "order": 3,
+        "disp": false,
+        "width": "3",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9",
+        "type": "ui_group",
+        "name": "DSI",
+        "tab": "1",
+        "order": 2,
+        "disp": false,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "10",
+        "type": "ui_group",
+        "name": "Notif",
+        "tab": "1",
+        "order": 8,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "11",
+        "type": "ui_group",
+        "name": "QC",
+        "tab": "1",
+        "order": 9,
+        "disp": true,
+        "width": "4",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "1",
+        "type": "ui_tab",
+        "name": "1CH040",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
