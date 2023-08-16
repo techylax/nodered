@@ -44,7 +44,7 @@
         "method": "POST",
         "ret": "txt",
         "paytoqs": "body",
-        "url": "https://pemnetsp.webhook.office.com/webhookb2/3ea208b0-bc02-4333-828f-a34cd0bb1091@14e34c25-dbe7-4374-a026-99d90b7392f3/IncomingWebhook/bc41cdc806dc45309ffe4d170b9a9e4d/4242fef8-d597-42c6-90e7-b0bfbc97f59c",
+        "url": "add url here",
         "tls": "",
         "persist": false,
         "proxy": "",
