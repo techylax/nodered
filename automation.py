@@ -61,8 +61,11 @@ class AutomationWindow(QWidget):
             ui_group_counter = 2
             ui_group_mapping = {}
 
-# Remove groupings of "mqtt-broker"
+            # Remove groupings of "mqtt-broker"
             data = [node for node in data if node.get('type') != 'mqtt-broker']
+
+            # Remove groupings of "OPCUA-IIoT-Connector"
+            data = [node for node in data if node.get('type') != 'OPCUA-IIoT-Connector']
 
 # Replace ui_tab ID with "1" and update all occurrences
             for node in data:
