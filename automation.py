@@ -1,5 +1,12 @@
-import json
+# To import json file
+import json   
+
+# Loads system specfic parameter and function to manipulate Python Runtime Environment
 import sys
+
+# imports various classes and widgets from the PyQt5.QtWidgets module, which is part of the PyQt5 library. 
+# These widgets are GUI elements that you can use to build desktop applications with a graphical user interface.
+
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QTextEdit, QVBoxLayout, QFileDialog
 
 class AutomationWindow(QWidget):
@@ -17,9 +24,7 @@ class AutomationWindow(QWidget):
         self.process_button = QPushButton('Perform Automation')
         self.save_button = QPushButton('Save JSON')
 
-     # Python script to create Ui using PyQt5
-
-
+     # Python script to create UI using PyQt5
         layout = QVBoxLayout()
         layout.addWidget(self.json_textedit)
         layout.addWidget(self.find_label)
@@ -37,13 +42,14 @@ class AutomationWindow(QWidget):
 
         self.modified_json = None
     
-
+    # Function to import json file from fileDialog
     def import_json(self):
         file_dialog = QFileDialog()
         file_path, _ = file_dialog.getOpenFileName(self, 'Import JSON', '', 'JSON Files (*.json)')
         if file_path:
             with open(file_path, 'r') as file:
                 self.json_textedit.setPlainText(file.read())
+
 
     def perform_automation(self):
         json_data = self.json_textedit.toPlainText()
@@ -55,6 +61,8 @@ class AutomationWindow(QWidget):
             ui_group_counter = 2
             ui_group_mapping = {}
 
+# Remove groupings of "mqtt-broker"
+            data = [node for node in data if node.get('type') != 'mqtt-broker']
 
 # Replace ui_tab ID with "1" and update all occurrences
             for node in data:
@@ -119,3 +127,5 @@ if __name__ == '__main__':
     window = AutomationWindow()
     window.show()
     sys.exit(app.exec_())
+
+
