@@ -1,37 +1,43 @@
-Node Red Dashboard Automation Tool
+The Node Red Dashboard Automation Tool is a robust Python-based desktop application designed to streamline the process of automating tasks related to Node-RED dashboard JSON files. By providing a user-friendly graphical interface, it empowers users to efficiently import, manipulate, and save JSON data for their Node-RED dashboards. Here's a more detailed description of the tool:
 
-Installation Requirements:
-To use the Node Red Dashboard Automation Tool, you need the following:
-1. Python: Make sure you have Python installed on your computer. You can download the latest version of Python from the official website: https://www.python.org/downloads/
-2. PyQt5: The program uses the PyQt5 library for building the graphical user interface. You can install PyQt5 using pip by running the following command in your terminal or command prompt:
-pip install pyqt5
+**Installation Requirements:**
+Before using the Node Red Dashboard Automation Tool, ensure the following components are in place:
 
-How the Program Works:
+1. **Python:** The tool hinges on Python, so it's crucial to have Python installed on your machine. You can download the latest Python version from the official website: https://www.python.org/downloads/
 
-The Node Red Dashboard Automation Tool is a Python-based desktop application that allows you to automate certain tasks related to Node-RED dashboard JSON files. It provides a graphical user interface (GUI) to import a JSON file, perform automation on the data, and save the modified JSON back to a file.
+2. **PyQt5:** The tool leverages the PyQt5 library to craft its graphical user interface. PyQt5 can be effortlessly installed using pip. Just run the following command in your command prompt or terminal: `pip install pyqt5`
 
-Here's how the program works:
+**Program Workflow:**
 
-1. Launch the Application: After installing the required dependencies, run the Python script to launch the application.
-2. GUI Layout: The application opens a window with the title "Node Red Dashboard Automation." The window contains the following components:
-•	A large text area (QTextEdit) where you can paste the content of your JSON file or view the modified JSON data.
-•	Two input fields (QLineEdit) labeled "Find" and "Replace." These fields allow you to specify the text you want to find and replace in the JSON data.
-•	Three buttons (QPushButton) labeled "Import JSON," "Perform Automation," and "Save JSON." These buttons trigger specific actions.
-3. Import JSON: Click on the "Import JSON" button to open a file dialog. Select the JSON file you want to work with, and its content will be displayed in the large text area.
+**1. Launch the Application:**
+After successfully installing the necessary prerequisites, execute the Python script associated with the tool to launch the application.
 
-4. Perform Automation: After importing the JSON, enter the text you want to find and replace in the "Find" and "Replace" input fields, respectively. Click on the "Perform Automation" button to apply the automation process. The following actions are performed:
-•	Replace "ui_tab" ID with "1" and update all occurrences in the JSON.
-•	Replace "tab" ID with "100" and update all occurrences in the JSON.
-•	 Replace "ui_group" ID with "1+i" (where i is an incremental number) and update all occurrences in the JSON.
-•	Find and replace "branch plant" values with the specified text.
+**2. GUI Layout:**
+Upon launching, the application window titled "Node Red Dashboard Automation" comes into view. The window comprises several key components:
 
-Additionally, the program finds and replaces all occurrences of the specified "Find" text with the specified "Replace" text. The modified JSON will be displayed in the text area.
+- **Large Text Area (QTextEdit):** This space is employed for either pasting the JSON content or visualizing the modified JSON data.
 
-5. Save JSON: If you are satisfied with the modifications, click on the "Save JSON" button. A file dialog will open, allowing you to specify the file path and save the modified JSON to a new file.
+- **Input Fields (QLineEdit):** Two input fields, labeled "Find" and "Replace," are present. These fields facilitate the specification of text to be located and replaced within the JSON data.
 
-Notes
-- The application uses PyQt5 for the graphical user interface, making it easy to interact with the program.
-- Be cautious when performing automation, as it may modify the JSON in unexpected ways if not used properly.
-- Make sure to back up your original JSON files before applying any modifications with this tool.
+- **Buttons (QPushButton):** Three buttons, namely "Import JSON," "Perform Automation," and "Save JSON," feature prominently. Each button corresponds to specific actions.
 
+**3. Import JSON:**
+By clicking the "Import JSON" button, a file dialog opens, enabling the selection of the target JSON file. Subsequently, the content of the selected JSON file is displayed within the large text area.
 
+**4. Perform Automation:**
+After importing the JSON, the "Find" and "Replace" input fields come into play. Users input the text they want to find and its replacement in these fields. Clicking on the "Perform Automation" button initiates the automation process, encompassing the following actions:
+
+- Replacing occurrences of "ui_tab" IDs with "1" across the JSON.
+- Updating instances of "tab" IDs to "100" throughout the JSON.
+- Substituting "ui_group" IDs with "1+i" (where "i" represents an incremental number) across the JSON.
+- Locating and substituting "branch plant" values with user-specified text.
+- Additionally, the tool performs a general find-and-replace operation on the JSON content based on the user-specified "Find" and "Replace" text. The modified JSON content is then showcased within the text area.
+
+**5. Save JSON:**
+Upon satisfaction with the modifications, users can save the adjusted JSON by clicking the "Save JSON" button. This action triggers a file dialog, granting users the ability to specify the destination file path for the modified JSON data.
+
+**Notes:**
+
+- The application's utilization of PyQt5 empowers seamless interaction and engagement with the tool.
+- Caution is advised when engaging in automation, as improper usage may lead to unexpected alterations in the JSON structure.
+- A best practice is to create backups of the original JSON files prior to employing any modifications using this tool. This ensures data safety and mitigates the risk of unintended changes.
